@@ -1,0 +1,92 @@
+<div class="row tab-bar">
+        <div [class]="(steps==1)?'col-50 tab-top select ':'col-50 tab-top'">
+                <a (click)="step(1)" href="javascript:void(0)">Details</a>
+        </div>
+        <div (click)="step(2)" [class]="(steps==2)?'col-50 tab-top select ':'col-50 tab-top'">
+                <a href="javascript:void(0)">Reviews</a>
+        </div>
+</div>
+<div class="row list-job-finder">
+        <div *ngIf="steps==1" class="col-100">
+                <div style="height:91px; margin-top:-8px !important" class="name-details">
+                        <div class="name-details-session">
+                                <div class="name-details-icon profile-avatar">
+                                        <img style="margin:3px -200px 0px -70px" [src]="avatar(data?.user)">
+                                </div>
+                                <div style="margin: 46px 0px 5px -3px;" class="name-details-name">
+                                        <div>
+                                                        <div style="margin:-31px 0px 0px 16px" class="name-detailsss-name">
+                                                                        <rating onlyview="true" [rating]="data?.reviews_avg.average"></rating>
+                
+                                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+
+                </div>
+
+                <div *ngIf="userType==3 || userType==2" style="min-height:25px" class="details-section bg-white">
+                        <h5 class="place-hd blue">Occupation</h5>
+                        <p>{{data?.user.occupation}}</p>
+                </div>
+                <div style="min-height:25px" class="details-section bg-white">
+                        <h5 class="place-hd blue">Biography</h5>
+                        <p>{{data?.user.biography}}</p>
+                </div>
+                <div style="min-height:25px" class="details-section bg-white">
+                        <h5 class="place-hd blue">Referees</h5>
+                        <p>{{data?.user.refrees}}</p>
+                </div>
+                <div class="job-specs row bg-white">
+                        <div class="col-25 tab-top">a1
+                                <div class="sub-job-specs">last job completed</div>
+                        </div>
+                        <div class="col-25 tab-top">a2
+                                <div class="sub-job-specs">Total hours worked</div>
+                        </div>
+                        <div class="col-25 tab-top">bbbb
+                                <div class="sub-job-specs">Most experience in</div>
+                        </div>
+
+                </div>
+
+        </div>
+
+        <div *ngIf="steps==2" class="col-100">
+
+                <ul class="list-job-finder-inner list-jobs">
+
+                        <li>
+                                <div class="img-list job-image">
+
+                                        <div *ngFor="let rate of data?.reviews" class="row">
+                                                <div class="col-30 img-avatar">
+
+                                                        <a>
+                                                                <img [src]="avatar(data?.user)">
+                                                        </a>
+
+                                                </div>
+                                                <div class="col-70 list-details">
+                                                        <div class="name-detailss-name">
+                                                                <rating onlyview="true" [rating]="rate.rating"></rating>
+
+                                                        </div>
+                                                        <div class="name-detailss-name-description place-hd">
+                                                                {{rate.name}}
+
+                                                        </div>
+                                                        <div class="name-detailss-name-description">
+                                                                {{rate.comments}}
+
+                                                        </div>
+
+                                                </div>
+                                        </div>
+                                </div>
+                        </li>
+
+                </ul>
+        </div>
+
+</div>

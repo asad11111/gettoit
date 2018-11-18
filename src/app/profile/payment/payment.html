@@ -1,0 +1,45 @@
+<div class="col-100">
+        <div *ngIf="user_type==3" class="form-grid list-block ">
+                <h5>Total Escrewed amount: ${{net_amount}}</h5>
+                <div class="row bg-white data-table">
+                        <table class="table">
+                                <tr>
+                                        <th>Job</th>
+                                        <th>Escrewed</th>
+                                        <th>Worker paid</th>
+                                        <th>date</th>
+                                </tr>
+                                <tr *ngIf="data.payment.length==0">
+                                        <th colspan="4">Record not found.</th>
+                                </tr>
+                                <tr *ngFor="let j of data.payment">
+                                        <td>{{j.title}}</td>
+                                        <td class="center">${{j.total_amount}}</td>
+                                        <td>{{(j.paid_amount)?'$'+j.paid_amount:'Not paid'}}</td>
+                                        <td>{{dateFormate(j.paid_date)}}</td>
+                                </tr>
+                        </table>
+                </div>
+        </div>
+        <div *ngIf="user_type==2" class="form-grid list-block ">
+                <h5>Avalable balance: ${{net_amount}}</h5>
+                <div class="row bg-white data-table">
+                        <table class="table">
+                                <tr>
+                                        <th>Job</th>
+                                        <th>Paid amount</th>
+                                        <th>date</th>
+                                </tr>
+                                <tr *ngIf="data.payment.length==0">
+                                        <th colspan="3">Record not found.</th>
+                                </tr>
+                                <tr *ngFor="let j of data.payment">
+                                        <td>{{j.title}}</td>
+                                        <td>{{(j.amount)?'$'+j.amount:'Not paid'}}</td>
+                                        <td>{{dateFormate(j.payment_datetime)}}</td>
+                                </tr>
+                        </table>
+
+                </div>
+        </div>
+</div>

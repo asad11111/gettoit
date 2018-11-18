@@ -1,0 +1,48 @@
+import {Component, Input, Output, EventEmitter, ElementRef, ViewChild} from '@angular/core';
+let Croppie = require("croppie");
+
+
+@Component({
+    selector: 'img-crop',
+    template: `<div #el></div>`,
+})
+export class ImgCrop {
+
+    @ViewChild('el')
+    public el:ElementRef;
+
+    public _src:string;
+
+    @Input()
+    public set src(val){
+        this._src = val;
+        this.init(val);
+    }
+    public get src(){
+        return this._src;
+    }
+    public croppie:any;
+
+    public ngAfterViewInit() {
+    }
+    public init(val){
+        if(!val){
+            if(this.croppie) this.croppie.destroy();
+            return;
+        }
+        this.croppie = new Croppie(this.el.nativeElement, {
+            boundary: { width: 300, height: 300 },
+            viewport: { width: 150, height: 150 },
+            showZoomer: false,
+            url: val
+        });
+    }
+    public crop(){
+        return this.croppie.result({type: 'blob'}).then((blob)=>{
+            return blob;
+        })
+    }
+    public destroy(){
+    }
+
+}

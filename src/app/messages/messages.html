@@ -1,0 +1,18 @@
+<div class="page-content form-grid">
+    <ul class="user-list-messages">
+        <li *ngFor="let m of mesgUsers" >
+            <div class="user-avatar">
+                <a [routerLink]="['/','messages',(currentUser.id==m.send_by)?m.send_to:m.send_by,m.job_id]">
+                    <img [src]="avatar(m)"></a>                   
+            </div>
+            <div class="user-content">
+                <h3><a [routerLink]="['/','messages',(currentUser.id==m.send_by)?m.send_to:m.send_by,m.job_id]">    
+                    {{(currentUser.id==m.send_by)?m.reciever:''}}
+                    {{(currentUser.id==m.send_to)?m.sender:''}}</a>
+                    <span>10 May</span>
+                </h3>
+                <p>{{m.mesg}}</p>
+            </div>
+        </li>      
+    </ul>
+</div>

@@ -1,0 +1,23 @@
+<div class="create_job_form">
+    <errors [errors]="errors"></errors>
+    <div  class="form-grid">
+            <div class="ibox">
+                <div class="ibox-content padding-top-10">
+                    <office-map   viewMarker='false' [mapCircle]="map_circle"     [latLng]="defaultMap" (onSelect)="googleLat($event)"></office-map>
+                </div>
+            </div>
+            <div class="list-block margin-bottom-40">
+                <ul class="no-border">
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Address</div>
+                        <input type="text" [(ngModel)]="job.address" id="googlemapaddress" placeholder="Address">
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+   
+ 
+   
+</div>
+<confirm #confirm></confirm>

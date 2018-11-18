@@ -1,0 +1,14 @@
+<div class="col-100" style="margin:5px 0px 0px 0px">
+        <ul class="list-job-finder-inner list-jobs ">
+                <li *ngFor="let notif of notes">
+                        <div class="row margin-bottom-10 line-1">
+                                <div class="col-100 list-details  ">
+                                        <div>
+                                                <span> {{notif?.message}}</span>
+                                                <i [routerLink]="['/','jobs',notif?.job_id]" class="fa fa-arrow-right" ></i>
+                                        </div>                                    
+                                </div>
+                        </div>
+                </li>
+        </ul>
+</div>

@@ -1,0 +1,23 @@
+<div class="form-grid">
+    <div class="list-block margin-bottom-40">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="data.length==0">
+                    <td colspan="3" >Transaction record not found.</td>
+                </tr>
+                <tr *ngFor="let t of data">
+                    <td>{{t.subject}}</td>
+                    <td>{{(t.trans_type=='+')?'Credit':'Debit'}}</td>
+                    <td>$ {{t.amount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

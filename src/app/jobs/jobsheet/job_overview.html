@@ -1,0 +1,279 @@
+<div class="row tab-bar">
+        <div [class]="(steps==1)?'col-25 tab-top select ':'col-25 tab-top'">
+                <a (click)="step(1)" href="javascript:void(0)">Overview</a>
+        </div>
+        <div (click)="step(2)" [class]="(steps==2)?'col-25 tab-top select ':'col-25 tab-top'">
+                <a href="javascript:void(0)">Details</a>
+        </div>
+        <div (click)="step(3)" [class]="(steps==3)?'col-25 tab-top select ':'col-25 tab-top'">
+                <a href="javascript:void(0)">Tasks</a>
+        </div>
+        <div (click)="step(4)" [class]="(steps==4)?'col-25 tab-top select ':'col-25 tab-top'">
+                <a href="javascript:void(0)">Location</a>
+        </div>
+</div>
+<div class="row job-overview list-job-finder">
+        <div *ngIf="steps==1" class="col-100">
+
+                <div class="banner-section">
+                        <carousel *ngIf="data.images.length>0" class="job_details">
+                                <slide *ngFor="let image of data.images">
+                                        <img [src]="imageUrl(image.url)" alt="First slide" style="display: block; width: 100%;">
+                                </slide>
+                        </carousel>
+                </div>
+
+                <div class="name-details">
+                        <div class="name-details-session">
+                                <div class="name-details-icon profile-avatar">
+                                        <img [src]="avatar(data?.post_by)">
+                                </div>
+                                <div class="name-details-name">
+                                        <div>{{data.post_by?.name}}</div>
+                                        <div *ngIf="data.reviews_avg?.average>0" class="name-detailsss-name">
+                                                <rating onlyview="true" [rating]="data.reviews_avg?.average"></rating>
+                                        </div>
+
+                                </div>
+                                <div>
+                                        <h2 class="jobs-h2">
+                                                <b class="pad-f2" *ngIf="data.reviews_avg?.average<=0">No feedback given </b>
+                                        </h2>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="details-section bg-white">
+                        <h5 class="place-hd blue">Job details</h5>
+                        <p>{{data.job?.description}}</p>
+                </div>
+
+                <div class="job-specs row bg-white">
+                        <div class="col-25 tab-top">{{dateFormate(data.job?.start_date,'H:mm A')}}
+                                <div class="sub-job-specs">Time</div>
+                        </div>
+                        <div class="col-25 tab-top">{{dateFormate(data.job?.start_date,'DD MMM YYYY')}}
+                                <div class="sub-job-specs">Date</div>
+                        </div>
+                        <div class="col-25 tab-top">{{dateDifference(data.job?.start_date,data.job?.end_date)}}
+                                <div class="sub-job-specs">Duration</div>
+                        </div>
+                        <div class="col-25 tab-top">{{(dateDifference(data.job?.start_date,data.job?.end_date)>0)?'Yes':'No'}}
+                                <div class="sub-job-specs">Multi Day</div>
+                        </div>
+                </div>
+                <div *ngIf="userType==2 &&  data.applicants?.length==0" class="button-session bg-white">
+                        <button class="btn btn-xs btn-success" (click)="applyForJob()"> Apply for job </button>
+                        <a [routerLink]="['/','messages',data?.job.created_by,data?.job.id]" class="btn btn-xs btn-primary color-white">
+                                <i class="fa fa-weixin"></i> Ask question </a>
+                        <button style="margin: 0px 0px 0px 134px" *ngIf="data.applicants[0]?.status ==2" class="btn btn-success btn-xs">
+                                <i class="fa fa-check"></i> Start
+                        </button>
+                </div>
+                <div *ngIf="userType==2  &&  data.applicants?.length > 0" class="job-specs row bg-white">
+                        <div class="col-25 tab-top" *ngIf="data.applicants[0]?.applied_by==currentUser?.id && data.applicants[0]?.status=='1'">
+                                <a [routerLink]="['/jobs']">
+                                        <button style="margin: 2px 0px 0px 62px;" class="redBtn btn btn-xs" (click)="changeStatus(currentUser?.id,4)">
+                                                Cancel
+                                        </button>
+                                </a>
+                        </div>
+
+                        <div *ngIf="data.applicants[0]?.applied_by==currentUser?.id" class="col-25 tab-top ">
+                                <button style="margin: 2px 0px 0px 62px;" *ngIf="data.applicants[0]?.status ==2 && data.applicants[0]?.work_start==null" (click)="changeStatus(currentUser?.id,5)"
+                                        class="btn btn-success btn-xs">
+                                        <i class="fa fa-check "></i> Start
+                                </button>
+                                <button style="margin: 2px 0px 0px 62px;" *ngIf="data.job?.job_status=='InProgress' && data.applicants[0].status ==5 "
+                                class="btn btn-success btn-xs">
+                                <i class="fa fa-check "></i> InProgress
+                        </button>
+                        </div>
+                        <div *ngFor="let app of data?.applicants" class="col-25 tab-top ">
+                                <a style="margin:3px 0px 0px -150px" [routerLink]="['/','messages',data?.job.created_by,app.job_id]" class="btn btn-xs btn-primary color-white">
+                                        <i class="fa fa-weixin"></i> Ask question </a>
+                        </div>
+                </div>
+
+                <div class="col-100" *ngIf="currentUser?.user_role==3">
+                        <h5 class="place-hd blue bg-white align-left">Applicants</h5>
+                        <ul class="list-job-finder-inner list-jobs">
+                                <li *ngIf="data?.applicants?.length == 0">
+                                        No applicants found
+                                </li>
+                                <li *ngFor="let app of data?.applicants">
+                                        <div class="row">
+                                                <div class="col-30 img-avatar">
+                                                        <a [routerLink]="['/', 'profile',app.applied_by,app.job_id]">
+                                                                <img [src]="avatar(app)"> </a>
+                                                </div>
+                                                <div class="col-70 list-details">
+                                                        <div>Name:
+                                                                <span>
+                                                                        <a [routerLink]="['/', 'profile',app.applied_by,app.job_id]">{{app.name}}</a>
+                                                                </span>
+                                                        </div>
+                                                        <div>Occupation:
+                                                                <span>{{app.name}}</span>
+                                                        </div>
+                                                        <div *ngIf="currentUser?.id==data.job?.created_by" [ngSwitch]="currentUser?.user_role">
+                                                                <!-- Done Jobs:<span>{{app.name}}</span> -->
+                                                                <!-- Employer -->
+                                                                <div *ngSwitchCase="3">
+                                                                        <button *ngIf="app.status ==1" (click)="changeStatus(app.applied_by,4)" class="btn btn-danger btn-xs">
+                                                                                <i class="fa fa-close"></i> Decline
+                                                                        </button>
+                                                                        <button *ngIf="app.status ==2" (click)="changeStatus(app.applied_by,4)" class="btn btn-danger btn-xs">
+                                                                                <i class="fa fa-close"></i> Cancel
+                                                                        </button>
+                                                                        <button *ngIf="app.status ==1" (click)="changeStatus(app.applied_by,2)" class="btn btn-success btn-xs">
+                                                                                <i class="fa fa-check"></i> Accept
+                                                                        </button>
+                                                                        <button *ngIf="app.status ==2 && userType==3 && app.employer_start==null " (click)="changeStatus(app.applied_by,5)" class="btn btn-success btn-xs">
+                                                                                <i class="fa fa-check"></i> Start
+                                                                        </button>
+                                                                        <button *ngIf="app.status ==2 && userType==2 && app.work_start==null " (click)="changeStatus(app.applied_by,5)" class="btn btn-success btn-xs">
+                                                                                <i class="fa fa-check"></i> Start
+                                                                        </button>
+                                                                        <button *ngIf="app.status ==4" class="btn btn-danger btn-xs">
+                                                                                <i class="fa fa-ban"></i> Canceled
+                                                                        </button>
+                                                                        <button *ngIf="app.status ==5" (click)="changeStatus(app.applied_by,3)" class="btn btn-success btn-xs">
+                                                                                <i class="fa fa-check"></i> Complete
+                                                                        </button>
+                                                                        <button *ngIf="app.status ==5 && data.job?.job_status=='InProgress' " class="btn btn-success btn-xs">
+                                                                                <i class="fa fa-check"></i> InProgress
+                                                                        </button>
+                                                                        <button *ngIf="app.status ==3" class="btn btn-success btn-xs">
+                                                                                <i class="fa fa-check"></i> Completed
+                                                                        </button>
+                                                                        <button *ngIf="app.status ==3 && app.paid==1" class="btn btn-success btn-xs">
+                                                                                <i class="fa fa-check"></i> Paid
+                                                                        </button>
+                                                                        <button *ngIf="app.status ==3 && (app.paid=='' || app.paid==null)" (click)="payNow(app)" class="btn btn-primary btn-xs">
+                                                                                <i class="fa fa-dollar"></i> Release Funds
+                                                                        </button>
+                                                                </div>
+                                                                <a [routerLink]="['/','messages',app.applied_by,app.job_id]" class="btn btn-xs btn-primary color-white">
+                                                                        <i class="fa fa-weixin"></i> Ask question </a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </li>
+                        </ul>
+                </div>
+
+        </div>
+        <div *ngIf="steps==2" class="col-100">
+                <div class="form-grid bg-white padding-20">
+                        <div class="list-block margin-bottom-40">
+                                <ul class="no-border ul-list">
+                                        <li class="margin-bottom-10">
+
+                                                <h5 class="place-hd">Job Time </h5>
+                                                <p style="padding-left:16px; float:left;"> Job Start time</p>
+                                                <p style="padding-right:16px; float:right;">{{dateFormate(data.job?.start_date,'DD MMM YYYY')}} , {{dateFormate(data.job?.start_date,'H:mm
+                                                        A')}}
+                                                </p>
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <p style="padding-left:16px; float:left;"> Job finish time</p>
+                                                <p style="padding-right:16px; float:right;"> {{dateFormate(data.job?.end_date,'DD MMM YYYY')}} , {{dateFormate(data.job?.end_date,'H:mm
+                                                        A')}} </p>
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <p style="padding-left:16px; float:left;"> Hours per day</p>
+                                                <p style="padding-right:16px; float:right;"> {{data.job.hours_per_day}}</p>
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <p style="padding-left:16px; float:left;"> Total Hours</p>
+                                                <p style="padding-right:16px; float:right;">{{data.job.total_hours}}</p>
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <h5 class="place-hd">Extras </h5>
+                                                <p style="padding-left:16px; float:left;"> Number of workers needed</p>
+                                                <p style="padding-right:16px; float:right;"> {{data.job.no_workers}}</p>
+                                        </li>
+                                        <li class="margin-bottom-10 line-1">
+                                                <h5 class="place-hd">Will employer be on site
+                                                </h5>
+
+                                                <div class="margin-top-18 push-right">
+                                                        <!-- Rounded switch -->
+                                                        <label class="switch">
+                                                                <input [checked]="checked('employeer_onsite')" name="employeer_onsite" type="checkbox">
+                                                                <span class="slider round"></span>
+                                                        </label>
+                                                </div>
+                                                <br>
+
+                                        </li>
+                                        <li class="margin-bottom-10 line-1">
+                                                <h5 class="place-hd">Will there be tools on site </h5>
+                                                <div class="margin-top-18 push-right">
+                                                        <!-- Rounded switch -->
+                                                        <label class="switch">
+                                                                <input [checked]="checked('tools_onsite')" name="tools_onsite" type="checkbox">
+                                                                <span class="slider round"></span>
+                                                        </label>
+                                                </div>
+                                                <br>
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <h5 class="place-hd">Job Budget </h5>
+                                                <p style="padding-left:16px; float:left;">Total Budget</p>
+                                                <p style="padding-left:16px; float:right;">{{data.job.total_amount}}</p>
+                                                
+                                        </li>
+                                        <li  class="margin-bottom-10">
+                                                <p style="padding-left:16px; float:left;">Amount per worker</p>
+                                                <p style="padding-left:16px; float:right;">{{data.job.total_amount/data.job.no_workers}}</p>
+                                                
+                                        </li>
+                                       
+                                        <li class="margin-bottom-10">
+                                                <h5 class="place-hd">Gear Requested to Bring </h5>
+                                                <p style="padding-left:16px; float:left;">{{data.job.gear}}</p>
+                                        </li>
+                                </ul>
+                        </div>
+                </div>
+        </div>
+        <div *ngIf="steps==3" class="col-100">
+                <div class="form-grid padding-20 bg-white">
+                        <div class="list-block margin-bottom-40">
+                                <h5 class="blue align-left place-hd">Required Work</h5>
+                                <ol class="no-border ul-list">
+                                        <li *ngFor="let task of data.tasks" class="margin-bottom-10">
+                                                {{task.description}}
+                                        </li>
+
+                                </ol>
+                        </div>
+                </div>
+        </div>
+        <div *ngIf="steps==4" class="col-100 job-map">
+                <office-map [clickMarker]="false" [viewMarker]="viewMarker" [mapCircle]="mapCircle" [latLng]="defaultMap"></office-map>
+                <div class="form-grid bg-white padding-20">
+                        <div  class="list-block margin-bottom-20">
+                                <ul class="no-border ul-list">
+                                        <li *ngIf="userType==3" class="margin-bottom-10">
+
+                                                <h5 class="place-hd">Address </h5>
+                                                <p style="margin: 4px 0px 0px 19px;">{{data.job.address}}</p>
+                                        </li>
+                                        <li *ngIf="userType==2 && data?.applicants[0].status==2 " class="margin-bottom-10">
+
+                                                <h5 class="place-hd">Address </h5>
+                                                <p style="margin: 4px 0px 0px 19px;">{{data.job.address}}</p>
+                                        </li>
+                                        <li *ngIf="userType==2 && data?.applicants[0].status==1 " class="margin-bottom-10">
+
+                                                <h5 class="place-hd">Suburb </h5>
+                                                <p style="margin: 4px 0px 0px 19px;">{{data.job.city}}</p>
+                                        </li>
+                                </ul>
+                        </div>
+                </div>
+        </div>
+</div>

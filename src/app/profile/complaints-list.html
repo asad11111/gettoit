@@ -1,0 +1,27 @@
+<div class="col-100" style="margin:5px 0px 0px 0px">
+        <ul class="list-job-finder-inner list-jobs ">
+                <li *ngFor="let c of data">
+
+                        <div class="row margin-bottom-10 line-1">
+
+                                <div class="col-70 list-details  ">
+                                        <h5 class="decoration-heading">{{c.job_title}}</h5>
+                                        <div>Complaint Date
+                                                <span> {{c.updated_at|date}}</span>
+                                        </div>
+                                        <div>Against
+                                                <span style="margin:0px 0px 0px 67px">{{c.name}} </span>
+                                        </div>
+                                        <div>STATUS:
+                                                <span style="margin:0px 0px 0px 67px">{{c.status}} </span>
+                                        </div>
+                                        <div>
+                                                <i style="cursor: pointer;" class="i-style fa fa-arrow-right btn-xs " (click)="changeRoute(c)"   type="button"  > </i>
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                </li>
+
+        </ul>
+</div>

@@ -1,0 +1,27 @@
+<!-- Views -->
+<div class="views max-width-414">
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+        <!-- Pages container, because we use fixed navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages">
+            <!-- Page, "data-page" contains page name -->
+            <div data-page="index" class="page">
+
+                <!-- Scrollable page content -->
+                <div class="page-content job-finder" id="inner-content">
+                    <div class="clearfix"></div>
+                    <div class="inner-content-session">
+
+                        <!-- <div class="loading" *ngIf="loading">
+                            <spinner width="80"></spinner>
+                        </div> -->
+                        <top-nav></top-nav>
+                        <router-outlet>
+                        </router-outlet>
+                        <footer-nave></footer-nave>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

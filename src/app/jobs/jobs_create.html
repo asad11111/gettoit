@@ -1,0 +1,238 @@
+<div class="create_job_form">
+    <!-- Scrollable page content -->
+    <ul class="top-links">
+        <li class="{{(steps==1)?'active':''}}"></li>
+        <li class="{{(steps==2)?'active':''}}"></li>
+        <li class="{{(steps==3)?'active':''}}"></li>
+        <li class="{{(steps==4)?'active':''}}"></li>
+        <li class="{{(steps==5)?'active':''}}"></li>
+    </ul>
+
+    <errors [errors]="errors"></errors>
+    <div [style.display]="(progr > 0)?'block':'none'" class="progress">
+        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progr}}" aria-valuemin="0"
+            aria-valuemax="100" [ngStyle]="{width:progr+'%'}">
+            {{progr}}%
+        </div>
+    </div>
+
+    <div class="page-content" *ngIf="steps==1" id="category-form">
+        <div class="box-area-three row">
+            <div class="col-33" *ngFor="let c of categories">
+                <div class="box-area  {{(checkCat(c.id))?'active':''}}" (click)="setCat(c)">
+                    <a href="javascript:void(0)">
+                        <img src="img/photos/Icons/{{c.logo}}">
+                        <div>{{c.title}}</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content form-grid" *ngIf="steps==2" id="category-form">
+        <form>
+            <div class="list-block margin-bottom-40">
+                <ul class="no-border">
+                    <li class="margin-bottom-10">
+                        <div style="padding-top:5%" class="image_loader">
+                            <input class="hide" (change)="onFileChange($event)" multiple type="file" #fileInput id="fileInput" name="fileInput" />
+
+                            <button id="pic" name="pic" style="border-radius: 50%;" type="file" (click)="fileInput.click()" [attr.multiple]="multiple ? true : null">
+                                <img style="padding-top:5%;" src="img/photos/Icons/addImage_small_gray.png">
+                            </button>
+                            <br> Add Images
+                        </div>
+
+                        <div class="selected_imag_section">
+                            <ul>
+                                <li *ngFor="let i of dumyImages">
+                                    <img [src]="i">
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </li>
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Job title: </div>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-input">
+                                    <input type="text" placeholder="Please write a short title of what needs to be done" [(ngModel)]="job.title" name="title">
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Job details: </div>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-input">
+                                    <textarea placeholder="Please write a short description of what needs to be done" [(ngModel)]="job.description" name="description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="steps==3" class="form-grid">
+        <form>
+            <div class="list-block margin-bottom-40">
+                <ul class="no-border">
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Job Start Time </div>
+                        <owl-date-time name='start_date' [(ngModel)]="job.start_date" dateFormat="YYYY-MM-DD HH:mm" autoClose="true" placeHolder="What day and time will work to start"></owl-date-time>
+                    </li>
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Job Finish Time </div>
+                        <owl-date-time name='end_date' [(ngModel)]="job.end_date" dateFormat="YYYY-MM-DD HH:mm" autoClose="true" placeHolder="What day and time will work end"></owl-date-time>
+
+                    </li>
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Hours per day </div>
+
+                        <input type="text" placeholder="how many hours per day" [(ngModel)]="job.hours_per_day" name="hours_per_day">
+                    </li>
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Total Hours </div>
+                        <p class="a-right">{{tot_Hrs(job.start_date,job.end_date,job.hours_per_day) }}</p>
+                    </li>
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Amount per hour </div>
+                        <input type="text" placeholder="Amount per hour" [(ngModel)]="job.per_hour" name="per_hour">
+                    </li>
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Number of Workers </div>
+                        <input type="text" placeholder="How many workers are needed" [(ngModel)]="job.no_workers" name="no_workers">
+                    </li>
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Total Amount </div>
+                        <p class="a-right">{{totAmount()}}
+                            <button *ngIf="userAccounts.length > 1" type="button" (click)="selectPayments()" class="btn btn-primary btn-xs push-right float-right">
+                            Select your payment account </button>
+                            <a *ngIf="userAccounts.length==0" type="button" class="btn btn-primary btn-xs push-right float-right"> Please add your payment. </a>
+                        </p>
+                    </li>
+
+
+                    <li class="margin-bottom-10 line-1">
+                        <div class="place-hd">Will employer be on site
+                        </div>
+                        <div class="margin-top-18 push-right">
+                            <!-- Rounded switch -->
+                            <label class="switch">
+                                <input [checked]="checkCheked('employeer_onsite')" (change)="changeChecked('employeer_onsite',$event.target)" name="employeer_onsite"
+                                    type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="margin-bottom-10 line-1">
+                        <div class="place-hd">Will there be tools on site
+                        </div>
+                        <div class="margin-top-18 push-right">
+                            <!-- Rounded switch -->
+                            <label class="switch">
+                                <input [checked]="checkCheked('tools_onsite')" (change)="changeChecked('tools_onsite',$event.target)" name="tools_onsite"
+                                    type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Gear needed </div>
+                        <input type="text" placeholder="What gear will your workers need to bring to be able to safetly complete the work" [(ngModel)]="job.gear"
+                            name="gear">
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="steps==4" class="form-grid">
+        <form>
+            <div class="list-block margin-bottom-40">
+                <ul class="no-border">
+                    <li class="margin-bottom-10 line-1">
+                        <div style="color:#222;" class="place-hd">Note: The more tasks you create, the higher the quality of work that will be done
+
+                        </div>
+                    </li>
+                    <li class="margin-bottom-10">
+                        <div class="place-hd">Required Work</div>
+                        <input type="text" id="rec4" #input (change)="store(input.value); input.value=''" placeholder="Press Enter to create more tasks">
+                    </li>
+                </ul>
+                <div class="container" style="width:100%; position:relative;">
+                    <ul class="list-group">
+                        <li style="text-align:left" class="list-group-item" *ngFor="let d of work;  let i=index;">
+                            {{(i+1)}}: {{d}}
+                            <i (click)="del(i)" class="fa fa-trash" style="float:right"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="steps==5" class="form-grid">
+        <div class="ibox">
+            <div class="ibox-content padding-top-10">
+                <office-map [latLng]="defaultMap" placeSearch="googlemapaddress" (onSelect)="googleLat($event)"></office-map>
+            </div>
+        </div>
+        <div class="list-block margin-bottom-40">
+            <ul class="no-border">
+                <li class="margin-bottom-10">
+                    <div class="place-hd"> Street Address</div>
+                    <input type="text" #googlemapaddress name="googlemapaddress" id="googlemapaddress" placeholder="Address">
+                </li>
+                <li class="margin-bottom-10">
+                    <div class="place-hd">City</div>
+                    <input type="text"  [(ngModel)]="job.city" placeholder="City">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<confirm #confirm></confirm>
+
+<modal [show]="Notificationshow" (hide)="onHide()">
+    <div header>Payment notification</div>
+    <div body class="width-100">
+        <errors [errors]="paymentError"></errors>
+    </div>
+    <div footer>
+        <button (click)="onHide()" type="button" class="btn btn-primary btn-sm"> Ok
+            <i class="fa fa-check"></i>
+        </button>
+    </div>
+</modal>
+
+<modal [show]="selectPayment" (hide)="onHide2()">
+    <div header>Payment accounts</div>
+    <div body class="width-100">
+        <ul class="ul-list list-style-none" >
+            <li *ngFor="let u of userAccounts">
+                <div class="radio radio-primary">
+                    <input type="radio" 
+                    name="accounts" 
+                    [id]="'accounts' + u.id"  
+                    [value]="u.id" 
+                    (change)="selectAcount(u.id)"
+                    [checked]="(u.id==job.account_id)?true:false">
+                    <label [for]="'accounts' + u.id">
+                        {{u.title_name}} ({{u.card_type}})
+                    </label>
+                </div>                
+            </li>
+        </ul>
+    </div>
+    <div footer>
+            <button (click)="onHide2()" type="button" class="btn btn-default btn-sm">
+                    Ok <i class="fa fa-check"></i> </button>
+    </div>
+</modal>

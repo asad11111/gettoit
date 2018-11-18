@@ -1,0 +1,134 @@
+<div class="row tab-bar">
+        <div [class]="(steps==1)?'col-50 tab-top select ':'col-50 tab-top'">
+                <a (click)="step(1)" href="javascript:void(0)">Details</a>
+        </div>
+        <div (click)="step(2)" [class]="(steps==2)?'col-50 tab-top select ':'col-50 tab-top'">
+                <a href="javascript:void(0)">Reviews</a>
+        </div>
+</div>
+<div class="row list-job-finder">
+        <div *ngIf="steps==1" class="col-100 profileDetails">
+                <div class="name-details padding-15">
+                        <div class="name-details-session">
+                                <div class="name-details-icon profile-avatar">
+                                        <img style="margin:3px -200px 0px -70px" [src]="avatar(data?.user)">
+                                </div>
+                        </div>
+                        <div class="name-details-name list-block">
+
+                                <div *ngIf="this.edit==1" style="margin:50px 0px 0px 0px;">{{data?.user.name}}</div>
+                                <div *ngIf="this.edit==2" style="margin: 28px auto 0px -34px;padding-bottom: 0px;" class="item-inner item-input item-content">
+                                        <input type="text" class="no-border black-color" [(ngModel)]="user.name" name="name">
+                                </div>
+                                <div *ngIf="data?.reviews_avg.average>0" style="margin:-31px 0px 0px 14px" class="name-detailsss-name">
+                                        <rating onlyview="true" [rating]="data?.reviews_avg.average"></rating>
+
+                                </div>
+
+
+                        </div>
+                        <h2 *ngIf="data?.reviews_avg.average<=0" class="jobs-h2 pad-f">
+                                <b>No feedback given </b>
+                        </h2>
+                </div>
+
+                <div *ngIf="userType==3 || userType==2" style="min-height:25px" class="details-section bg-white list-block">
+                        <h5 class="place-hd blue">Occupation</h5>
+                        <p *ngIf="this.edit==1">{{data?.user.occupation}}</p>
+                        <div *ngIf="this.edit==2" class="item-inner item-input item-content">
+                                <input type="text" class="no-border black-color" [(ngModel)]="user.occupation" name="occupation">
+                        </div>
+                </div>
+                <div style="min-height:25px" class="details-section bg-white list-block">
+                        <h5 class="place-hd blue">Biography</h5>
+                        <p *ngIf="this.edit==1">{{data?.user.biography}}</p>
+                        <div *ngIf="this.edit==2" class="item-inner item-input item-content">
+                                <input type="text" class="no-border black-color" [(ngModel)]="user.biography" name="biography">
+                        </div>
+                </div>
+                <div style="min-height:25px" class="details-section bg-white list-block">
+                        <h5 class="place-hd blue">Referees</h5>
+                        <p *ngIf="this.edit==1">{{data?.user.refrees}}</p>
+                        <div *ngIf="this.edit==2" class="item-inner item-input item-content">
+                                <input type="text" class="no-border black-color" [(ngModel)]="user.refrees" name="refrees">
+                        </div>
+                </div>
+
+                <div *ngIf="this.edit==2" style="min-height:25px" class="details-section bg-white list-block">
+                        <h5 class="place-hd blue">Old Password</h5>
+
+                        <div class="item-inner item-input item-content">
+                                <input type="password" class="no-border black-color" [(ngModel)]="user.old_password" name="password">
+                        </div>
+                </div>
+                <div *ngIf="this.edit==2" style="min-height:25px" class="details-section bg-white list-block">
+                        <h5 class="place-hd blue">Password</h5>
+
+                        <div class="item-inner item-input item-content">
+                                <input type="password" class="no-border black-color" [(ngModel)]="user.password" name="password">
+                        </div>
+                </div>
+                <div *ngIf="this.edit==2" style="min-height:25px" class="details-section bg-white list-block">
+                        <h5 class="place-hd blue">Confirm Password</h5>
+
+                        <div class="item-inner item-input item-content">
+                                <input type="password" class="no-border black-color" [(ngModel)]="user.confirm_password" name="c_password">
+                        </div>
+                </div>
+                <div class="job-specs row bg-white">
+                        <div class="col-25 tab-top">a1
+                                <div class="sub-job-specs">last job completed</div>
+                        </div>
+                        <div class="col-25 tab-top">a2
+                                <div class="sub-job-specs">Total hours worked</div>
+                        </div>
+                        <div class="col-25 tab-top">bbbb
+                                <div class="sub-job-specs">Most experience in</div>
+                        </div>
+                </div>
+                <div class="job-specs row bg-white">
+                        <div class="col-100 tab-top">
+                                <button (click)="edits(2)" *ngIf="this.edit==1" class="btn btn-primary btn-md">
+                                        <i class="fa fa-edit"></i>
+                                        Edit
+                                </button>
+                                <button (click)="save(1)" *ngIf="this.edit==2" class="btn btn-success btn-md">
+                                        <i [ngClass]="(busy)?'fa fa-spinner fa-spin fa-fw':'fa fa-save'"></i>
+                                        Save
+                                </button>
+                        </div>
+                </div>
+        </div>
+
+        <div *ngIf="steps==2" class="col-100">
+                <ul *ngFor="let rate of data?.reviews" class="list-job-finder-inner list-jobs">
+                        <li>
+                                <div class="img-list job-image">
+                                        <div class="row">
+                                                <div class="col-30 img-avatar">
+                                                        <a>
+                                                                <img [src]="avatar(data?.user)">
+                                                        </a>
+                                                </div>
+                                                <div class="col-70 list-details">
+                                                        <div class="name-detailss-name">
+                                                                <rating onlyview="true" [rating]="rate.rating"></rating>
+
+                                                        </div>
+                                                        <div class="name-detailss-name-description place-hd">
+                                                                {{rate.name}}
+
+                                                        </div>
+                                                        <div class="name-detailss-name-description">
+                                                                {{rate.comments}}
+
+                                                        </div>
+
+                                                </div>
+                                        </div>
+                                </div>
+                        </li>
+
+                </ul>
+        </div>
+</div>

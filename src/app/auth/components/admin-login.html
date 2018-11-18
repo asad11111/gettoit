@@ -1,0 +1,40 @@
+<div class="statusbar-overlay"></div>
+<!-- Panels overlay-->
+<div class="panel-overlay"></div>
+
+<!-- Views -->
+<div class="views">
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+        <!-- Pages container, because we use fixed navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages">
+            <!-- Page, "data-page" contains page name -->
+            <div data-page="index" class="page">
+                <!-- Scrollable page content -->
+                <div class="page-content" id="app-cover">
+                    <div class="clearfix"></div>
+                    <div class="app-cover-content">
+                        <div class="margin-bottom-30" style="margin:-85px -15px 0; background:#47ace4; padding-top:10px;">
+                            <img src="img/photos/logo_gettoit.png" alt="Carlitos" />
+                        </div>
+                        <div class="signup-sec">
+                            <errors [errors]="errors"></errors>
+                            <div class="col-100 form-group">
+                                 <input type="text"  (keyup.enter)="login()" [(ngModel)]="credentials.email"  class="form-control" placeholder="Admin email or username" >
+                            </div>
+                            <div class="col-100 form-group">
+                                    <input type="password" (keyup.enter)="login()" [(ngModel)]="credentials.password" class="form-control" placeholder="Password" >
+                            </div>                         
+
+                            <div class="row offset-top-30 margin-bottom-10">
+                                <div class="col-100">
+                                   <button (click)="login()" class="btn btn-primary btn-lg"> <i [class]="(busy)?'fa fa-spinner fa-spin':'fa fa-sign-in'" ></i> Login </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

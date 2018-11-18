@@ -1,0 +1,74 @@
+<div class="col-100 margin-bottom-45">
+    <div class="form-grid">
+        <div class="list-block searchbox">
+            <ul class="no-border">
+                <li class="margin-bottom-10">
+                    <input type="text" [(ngModel)]="search.name"  placeholder="Name" name="name">
+                </li>
+                <li class="margin-bottom-10">
+                    <input type="text" [(ngModel)]="search.email"  placeholder="Email" name="email">
+                </li>
+                <li class="margin-bottom-10">
+                    <select  [(ngModel)]="search.usertype"  name="usertype" >
+                        <option value=""> Select user type </option>
+                        <option value="2"> Worker </option>
+                        <option value="3"> Employer </option>
+                    </select>
+                </li>
+                <li class="margin-bottom-10">
+                    <button (click)="getUsers(1)" class="btn btn-success btn-xs">
+                        <i [class]="(busy)?'fa fa-spinner fa-spin':'fa fa-search'"></i> Search
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <ul class="list-job-finder-inner list-jobs">
+
+        <li *ngIf="users.length == 0">
+            No users found
+        </li>
+        <li *ngFor="let u of users">
+            <div class="row">
+                <div class="col-30 img-avatar">
+                    <img [src]="avatar(u)">
+                </div>
+                <div class="col-70 list-details">
+                    <div>Name:
+                        <span>
+                            {{u.name}}
+                        </span>
+                    </div>
+                    <div [ngSwitch]="u.user_role">User type:
+                        <span *ngSwitchCase="1">Admin</span>
+                        <span *ngSwitchCase="2">Worker</span>
+                        <span *ngSwitchCase="3">Employer</span>
+                    </div>
+                    <div>Occupation:
+                        <span>{{u.occupation}}</span>
+                    </div>
+                    <div>Status:
+                        <span>{{(u.status)?'Enabled':'Disabled'}}</span>
+                    </div>
+                    <div>
+                        <button (click)="delUser(u)" class="btn btn-danger btn-xs">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                        <button *ngIf="u.status==1" (click)="disable(u,0)" class="btn btn-primary btn-xs">
+                            <i class="fa fa-ban"></i> Disable
+                        </button>
+                        <button  *ngIf="u.status==0"  (click)="disable(u,1)" class="btn btn-success btn-xs">
+                            <i class="fa fa-check"></i> Enable
+                        </button>
+                        <!-- <a [routerLink]="['/','messages',u.id,0]" class="btn btn-xs btn-primary color-white">
+                                <i class="fa fa-weixin"></i> Ask question </a> -->
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<confirm #confirm></confirm>

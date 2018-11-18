@@ -1,0 +1,350 @@
+/*==============================================
+[Main stylesheet my-app.css]
+
+Author:			WM_Team
+Version:		1.0
+Created:		20 September 2016
+Last updated:	20 September 2016
+Template:		Comida - Restaurant reservations Responsive App Mobile
+================================================*/
+/*
+[Table of Contents]
+
+01. COVER PAGE
+02. LOGIN & REGISTRE & REMEMBER PASSWORD
+03. LEFT MENU
+04. WALKTHROUGH
+05. RESTAURANTS
+06. DETAIL RESTAURANT
+07. FOOD CATEGORIES
+08. RESERVATION FORM
+09. LISTs
+
+
+*/
+
+.no-border::after,
+.no-border::before {
+	background: none!important;
+}
+
+/*===============================================*/
+/* 01. COVER PAGE	 						     */
+/*===============================================*/
+
+#app-cover {
+	background-image: url(../img/photos/bg-cover.jpg);
+	background-position: center;
+	background-size: cover;
+	color: #FFFFFF;
+	padding: 32px 15px;
+	text-align: center;
+}
+
+.app-cover-content {
+	padding-top: 50px;
+}
+
+/*===============================================*/
+/* 01. YOUR ROLE	 						     */
+/*===============================================*/
+
+#your-role {
+	background-image: url(../img/photos/MoneyLawn.jpg);
+	background-position: center;
+	background-size: cover;
+	color: #FFFFFF;
+	padding: 32px 0px;
+	text-align: center;
+}
+
+.your-role-content {
+	padding-top: 50px;
+}
+
+#your-role .navbar .left a{
+	font-size:12px !important;
+	color:#444 !important;}
+	
+#your-role .navbar .right a{
+	font-size:12px !important;
+	color:#444 !important;}
+	
+.your-role-content-session {
+	margin:215px 0 20px 0;
+	padding:10px;
+	background: rgba(0, 0, 0, 0.7);}
+	
+.box-area {
+	background:#fff;
+	border-radius:50%;
+	text-align:center;
+	margin:15px 10px;
+	padding:10px;
+	font-weight:normal;}
+	
+.note-txt {
+	font-size:9px;
+	line-height:10px;}
+	
+/*===============================================*/
+/* 01. INNER PAGE	 						     */
+/*===============================================*/
+
+#inner-content {
+	background:#fff;
+	color: #666666;
+	padding: 32px 0px;
+	text-align: center;
+}
+
+.inner-content-session {
+	padding-top: 50px;
+}
+#inner-content .navbar .left a{
+	font-size:12px !important;
+	color:#444 !important;}
+	
+#inner-content .navbar .right a{
+	font-size:12px !important;
+	color:#444 !important;}
+	
+.form-grid {
+	padding:0;}
+	
+.form-grid .place-hd {
+	text-align:left;
+	color:#47ace4;
+	padding:0 20px;
+	font-size:12px;}
+	
+.form-grid input{
+	border-bottom:solid 1px #ccc !important;
+	color:#666 !important;
+	padding:0 20px 10px 20px !important;}
+	
+.note-content {
+		font-size:10px;
+		line-height:12px;
+		color:#666;
+		text-align:left;
+		padding:0 20px;}
+		
+.form-grid .line-1 {
+	border-bottom:solid 1px #ccc;
+	padding-bottom:10px;}
+
+	.form-grid .line-2 {
+		border-bottom:solid 0px #ccc;
+		padding-bottom:10px;
+	}
+	
+.box-area-three {
+	padding:20px;}
+	
+.box-area-three .col-33 .box-area{
+	background:#f2f2f2;
+	margin:0;
+	color:#47ace4;
+	padding:7px;
+	margin-bottom:15px;
+	font-size:9px;
+	box-shadow:0 0 6px #95cff0;
+	border:solid 1px #fff;}
+	
+.box-area-three .col-33 .box-area:hover{
+	background:#fff;}
+	
+.box-area-three .col-33 .box-area a{
+	color:#47ace4}
+	
+.box-area-three .col-33 .box-area img {
+	padding-top: 6px;
+	width:auto;}
+	
+
+/*===============================================*/
+/* 02. LOGIN & REGISTRE & REMEMBER PASSWORD	     */
+/*===============================================*/
+
+
+.page-top-cover {
+	width: 100%;
+	height: 250px;
+	background-image: url(../img/photos/bg-page.jpg);
+	background-position: center;
+	background-size: cover;
+}
+
+.navbar-no-color {
+	background: transparent!important;
+}
+
+.input-icon  {
+	margin-bottom:0px!important;
+}
+
+.input-icon i:before {
+	font-size:26px!important;
+}
+
+.btn-form-group {
+	padding: 0px 15px;
+}
+
+.recover-password {
+	padding: 0px 30px;
+}
+
+.icon-recover i:before {
+	font-size: 70px;
+}
+
+.back-close-icon i:before {
+	font-size: 22px;
+}
+
+
+/*===============================================*/
+/* 03. LEFT MENU	 						     */
+/*===============================================*/
+
+.left-menu-profile i:before {
+	font-size: 18px!important;
+}
+
+.left-menu-profile input[type="text"] {
+	border: 0px;
+	background: #EFEFEF;
+	width: 100%;
+	height: 26px;
+	text-align: center;
+	border-radius: 3px;
+	font-family: "Montserrat"!important;
+}
+
+.left-menu-profile .icon-location i:before {
+	font-size: 10px!important;
+}
+
+.list-menu {
+	margin: 30px 0px!important;
+}
+
+.list-menu i:before {
+	font-size: 20px!important;
+}
+
+/*===============================================*/
+/* 04. WALKTHROUGH	 						     */
+/*===============================================*/
+
+.walkthrough-icon {
+	width: 100px;
+	height: 100px;
+	margin: 60px auto 40px;
+}
+
+.walkthrough-item {
+	padding: 0px 15px;
+}
+
+.slick-dots li button::before {
+	font-size: 20px!important
+}
+
+.slick-dots li {
+    margin: 0 3px!important;
+}
+
+/*===============================================*/
+/* 05. RESTAURANTS	 						     */
+/*===============================================*/
+
+.restaurant {
+	margin-bottom: 40px;
+}
+
+.restaurant-img {
+	width: 100%;
+	height: auto;
+}
+
+.restaurant-grid {
+	margin-bottom: 30px;
+}
+
+.link-deeporange {
+	color: #ff5722!important;
+}
+
+/*===============================================*/
+/* 06. DETAIL RESTAURANT	 				     */
+/*===============================================*/
+
+.tabs-menu {
+	margin: 15px 0px 0px!important;
+}
+
+.tabs-menu a.active{
+	color: #ff5722!important;
+}
+
+.user-reviews-star {
+	margin: 0px!important;
+	padding: 0px!important;
+}
+
+.user-reviews-star li{
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.gray-star:before{
+	color: gray!important;
+}
+
+.yellow-star:before{
+	color: #FFC107!important;
+}
+
+/*===============================================*/
+/* 07. FOOD CATEGORIES		 				     */
+/*===============================================*/
+
+.food-category {
+	border: 1px solid #EFEFEF;
+	padding: 15px;
+	display: block;
+	margin-bottom: 15px;
+}
+
+.icon-category:before {
+	font-size: 60px!important;
+}
+
+/*===============================================*/
+/* 08. RESERVATION FORM							 */
+/*===============================================*/
+
+.reservation-cover {
+/* background-image: url(..)!important; */	
+}
+
+.booking-form ul li{
+	margin-bottom: 15px;
+}
+
+/*===============================================*/
+/* 09. LISTs		 						     */
+/*===============================================*/
+
+.content-background {
+	background: #EFEFEF;
+	color: #6d6d72;
+}
+
+.page-list .item-media i:before {
+	font-size: 24px!important;
+	height: 24px!important;
+}

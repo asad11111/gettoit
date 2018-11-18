@@ -1,0 +1,52 @@
+.login-footer {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    background: #2F4050;
+}
+.login-logo {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.box-area-three .active{
+    background: #ffffff !important;
+}
+
+.top-links{
+    position: absolute;
+    width:70%;
+    margin: 30px auto 0px 15%;
+    padding: 0px;
+    list-style: none;
+    z-index: 9999;
+}
+
+.top-links li{
+    height: 3px;
+    list-style: none;
+    float: left;
+    background:  #000000;
+    width: 16%;
+    margin: 0px 2%;    
+}
+
+
+.top-links .active{
+    background:  #47ace4;
+}
+.selectdata{
+    width: 90%;
+    margin: 0px auto;
+    border-bottom: 1px solid #cccccc;
+    padding: 0px 5%;
+}
+.selectdata select{
+    border: none !important;
+}
+
+.signup-sec{
+    margin-top: 30% !important;
+  }

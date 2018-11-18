@@ -1,0 +1,67 @@
+<div id="MenuContainer" *ngIf="auth.Footer && (userType==2 || userType==3)">
+    <ul class="nav navbar-nav" id="navigation">
+        <li [routerLinkActive]="['active']" [routerLink]="['/','jobs']" *ngIf="userType==2">
+            <a href="javascript:void(0)" class="link icon-only open-panel">
+                <i class="icon icon-job-finder"></i>
+                <p>Job Finder</p>
+            </a>
+        </li>
+        <li [routerLinkActive]="['active']">
+            <a [routerLink]="['/','jobs','myjobs']" class="link icon-only open-panel">
+                <i class="icon icon-my-jobs"></i>
+                <p>My Jobs</p>
+            </a>
+        </li>
+        <li [routerLinkActive]="['active']" *ngIf="userType==3">
+            <a [routerLink]="['/','jobs','create']" class="link icon-only open-panel">
+                <i class="icon icon-create-job"></i>
+                <p>Create job</p>
+            </a>
+        </li>
+
+        <li [routerLinkActive]="['active']">
+            <a [routerLink]="['/','messages']" class="link icon-only open-panel">
+                <i class="icon icon-messages"></i>
+                <p>Messages</p>
+            </a>
+        </li>
+        <li class="submenu">
+            <a href="javascript:void(0)" [routerLink]="['/','profile']" class="link icon-only open-panel">
+                <i class="icon icon-more"></i>
+                <p>Settings</p>
+            </a>  
+        </li>
+    </ul>
+</div>
+
+
+<div id="MenuContainer" *ngIf="auth.Footer && userType==1">
+    <ul class="nav navbar-nav" id="navigation">
+        <li [routerLinkActive]="['active']"  >
+            <a [routerLink]="['/','admin','jobs']" class="link icon-only open-panel">
+                <i class="fa menu-link fa-folder-o"></i>
+                <p>Jobs</p>
+            </a>
+        </li>
+        <li [routerLinkActive]="['active']">
+            <a [routerLink]="['/','admin','complaints']" class="link icon-only open-panel">
+                <i class="fa menu-link fa-support"></i>
+                <p>Complaints</p>
+            </a>
+        </li>
+        <li [routerLinkActive]="['active']" >
+            <a [routerLink]="['/','admin','payments']" class="link icon-only open-panel">
+                <i class="fa menu-link fa-credit-card"></i>
+                <p>Payments</p>
+            </a>
+        </li>
+
+        <li [routerLinkActive]="['active']">
+            <a [routerLink]="['/','admin','users']" class="link icon-only open-panel">
+                <i class="fa menu-link fa-users"></i>
+                <p>Users</p>
+            </a>
+        </li>
+        
+    </ul>
+</div>

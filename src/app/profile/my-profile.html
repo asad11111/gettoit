@@ -1,0 +1,26 @@
+<div class="page-content worker-more" id="inner-content">
+        <div class="profile-image profile-avatar">
+                <img (click)="useravatar.click()" [src]="(selPhoto)?selPhoto:avatar(user?.user)">
+                <input type="file" class="hide" (change)="onFileChange($event)"  #useravatar name="useravatar" id="useravatar">
+        </div>
+        <div class="profile-heading">
+                <a [routerLink]="['/','profile','myprofile']"> My Profile </a>
+        </div>
+        <ul style="cursor: pointer;" class="profile-listing">
+                <li [routerLink]="['/','profile',user.user?.id,'complaints']" >
+                        <a class="complaints"> Complaints </a>
+                </li>
+                <li [routerLink]="['/','profile','banking']">
+                        <a  class="banking"> Banking </a>
+                </li>
+                <li [routerLink]="['/','profile','payment']">
+                        <a  class="banking"> Payment history </a>
+                </li>
+                <li [routerLink]="['/','about']">
+                        <a  class="about"> About </a>
+                </li>
+        </ul>
+        <div class="profile-logout">
+                <a style="cursor: pointer;" (click)="logout($event)"> Logout</a>
+        </div>
+</div>

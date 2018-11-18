@@ -1,0 +1,47 @@
+<div class="row list-job-finder">
+    <div class="col-100 profileDetails">
+        <div class="name-details padding-15">
+            <div class="name-details-session">
+                <div class="name-details-icon profile-avatar">
+                    <img style="margin:3px -200px 0px -70px" [src]="avatar(data?.user)">
+                </div>
+            </div>
+            <div class="name-details-name list-block">
+                <div style="margin:51px 0px 0px -12px;">{{data?.user.name}}</div>
+            </div>
+        </div>
+
+        <div class=" bg-white list-block">
+            <div class="item-input">
+                <errors [errors]="errors"></errors>
+            </div>
+            <h5 class="place-hd align-leftt blue">Name</h5>
+            <div class="item-inner item-input item-content">
+                <input style="font-size: 12px;" type="text" class="no-border black-color" [(ngModel)]="admin.name" name="name">
+            </div>
+            <h5 class="place-hd align-leftt blue">Old Password</h5>
+            <div class="item-inner item-input item-content">
+                <input type="password" class="no-border black-color" [(ngModel)]="admin.old_password" name="password">
+            </div>
+            <h5 class="place-hd align-leftt blue">Password</h5>
+            <div class="item-inner item-input item-content">
+                <input type="password" class="no-border black-color" [(ngModel)]="admin.password" name="password">
+            </div>
+            <h5 class="place-hd align-leftt blue">Confirm Password</h5>
+            <div class="item-inner item-input item-content">
+                <input type="password" class="no-border black-color" [(ngModel)]="admin.password_confirmation" name="password_confirmation">
+            </div>
+        </div>
+        <div class="job-specs row ">
+            <div class="col-100 tab-top">
+                <button (click)="save()" class="btn btn-success btn-xs">
+                    <i [ngClass]="(busy)?'fa fa-spinner fa-spin fa-fw':'fa fa-save'"></i>
+                    Save
+                </button>
+                <button (click)="logout()" class="btn btn-danger btn-xs">
+                    <i class="fa fa-sign-out"></i> Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

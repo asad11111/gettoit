@@ -1,0 +1,73 @@
+<!-- Status bar overlay for fullscreen mode-->
+<div class="statusbar-overlay"></div>
+<!-- Panels overlay-->
+<div class="panel-overlay"></div>
+
+
+<div class="app-cover-content">
+  <div class="margin-bottom-60" style="margin:-52px -30px 0; background:#47ace4; padding-top:10px; text-align:center;">
+    <img src="img/photos/logo_gettoit.png" alt="Carlitos" />
+  </div>
+  <div class="row" style="margin-top:10px; margin-bottom:50px;">
+    <div class="col-100 " *ngIf="!passcode">
+      <div class="text-small margin-top-15" style="text-align:center">First lets confirm your number</div>
+    </div>
+    <div class="col-60" style="margin:0 auto;" *ngIf="!passcode">
+      <form>
+        <div class="list-block margin-bottom-30">
+          <errors [errors]="errors"></errors>
+          <ul class="no-border">
+            <li>
+              <div class="form-group">
+                <div class="item-content">
+                  <div class="item-inner no-margin">
+                    <div class="item-input">
+                      <input type="text" name="tel_no" id="tel" [(ngModel)]="tel_no" class="text-thiny" placeholder="(country code) xxxxxxx">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="margin-top-100" style="margin:0 50px;">
+          <a (click)="getVerifyCode()" class="button button-fill text-extrat-thiny color-blue white-text" style="font-size:16px !important;">
+            <i *ngIf="process" class="fa fa-spinner fa-spin fa-fw"></i> Next</a>
+        </div>
+        <div class="text-center text-extrat-thiny  margin-top-10">
+          <a  [routerLink]="['/']" class="link back" style="font-size:16px !important; color:#666; text-decoration:underline;">Back</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-90 margin-auto" *ngIf="passcode">
+      <div class="text-small margin-top-15" style="text-align:center">Please input the 6 digit code recieved (Email or mobile)</div>
+    </div>
+    <div class="col-60" style="margin:0 auto;" *ngIf="passcode">
+      <form>
+        <div class="list-block margin-bottom-30">
+          <ul class="no-border">
+            <li>
+              <div class="item-content">
+                <div class="item-inner no-margin">
+                  <div class="item-input">
+                    <input type="text" class="text-thiny" [(ngModel)]="verify_code" name="Passode" placeholder="Passode">
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </form>
+      <div class="margin-top-100" style="margin:0 50px;">
+        <a (click)='verifyPasscode()' class="button button-fill text-extrat-thiny color-blue white-text" style="font-size:16px !important;">
+          <i *ngIf="process" class="fa fa-spinner fa-spin fa-fw"></i> Next</a>
+      </div>
+      <div class="text-center text-extrat-thiny  margin-top-10">
+        <a [routerLink]="['/']" class="link back" style="font-size:16px !important; color:#666; text-decoration:underline;">Back</a>
+      </div>
+    </div>
+  </div>
+
+</div>

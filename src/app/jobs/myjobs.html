@@ -1,0 +1,258 @@
+<div class="row tab-bar">
+        <div [class]="(steps==1)?'col-50 tab-top select ':'col-50 tab-top'">
+                <a (click)="step(1)" href="javascript:void(0)">Open</a>
+        </div>
+        <div (click)="step(2)" [class]="(steps==2)?'col-50 tab-top select ':'col-50 tab-top'">
+                <a href="javascript:void(0)">Completed</a>
+        </div>
+</div>
+<div class="row list-job-finder">
+        <div *ngIf="steps==1" class="col-100">
+                <ul class="list-job-finder-inner list-jobs">
+                        <li *ngFor="let j of jobs">
+                                <div class="row">
+                                        <div class="col-30 img-avatar">
+                                                <a [routerLink]="['/','jobs',j.id]">
+                                                        <img style="border-radius: 50%;" [src]="avatar(j.avator)"> </a>
+                                        </div>
+                                        <div style="padding-top:5px;" class="col-50 list-details">
+                                                <div>
+                                                        <h2 style="font-size:12px; color:black">
+                                                                <b>{{j.user_id}}</b>
+                                                        </h2>
+                                                </div>
+                                                <div *ngIf="j.rating>0">
+                                                        <div class="name-detailsss-name">
+                                                                <rating onlyview="true" [rating]="j.rating"></rating>
+
+                                                        </div>
+                                                       
+
+                                                </div>
+                                                <div >
+
+                                                        <h2 *ngIf="j.rating<=0" class="jobs-h2">
+                                                                <b >No feedback given </b>
+                                                        </h2>
+
+                                                </div>
+                                                <div >
+
+                                                        <h2 class="jobs-h2">
+                                                                <b *ngIf="j.ago<=0">Today - </b>
+                                                                <b *ngIf="j.ago=='1'">{{j.ago}} day ago - </b>
+                                                                <b *ngIf="j.ago>1">{{j.ago}} days ago - </b>
+                                                                <span *ngIf="userType==3 && (j.job_status=='Pending') " class="alert-applicants">Pending for Payment</span>
+                                                                <span *ngIf="userType==3  && (j.applicants==0) && (j.job_status=='Published')" class="alert-applicants">Awaiting Talent</span>
+                                                                <span *ngIf="userType==3 && (j.applicants>0)" class="alert-applicants">Applicants ({{j.applicants}})</span>
+                                                                <span *ngIf="userType==2 && (j.applied_status==1)" class="alert-applicants">Pending</span>
+                                                                <span *ngIf="userType==2 && (j.applied_status==2)" class="alert-applicants">Accept</span>
+                                                                <span *ngIf="userType==2 && (j.applied_status==3)" class="alert-applicants">Complete</span>
+                                                                <span *ngIf="userType==2 && (j.applied_status==4)" class="alert-applicants">cancel</span>
+                                                        </h2>
+
+                                                </div>
+                                        </div>
+                                        <div class="col-20">
+
+                                                <button style="margin:1px 0px 0px -15px" (click)="changeRoute(j.id)" class="btn btn-primary btn-xs">
+                                                        View Details
+                                                </button>
+                                                <button *ngIf="userType==3 && (j.job_status=='Pending') " 
+                                                (click)="selectPayments(j.id)"
+                                                style="margin:1px 0px 0px -24px" 
+                                                class="btn btn-success btn-xs">Pay to publish</button>
+                                        </div>
+                                        <div class="col-100">
+                                                <div>
+                                                        <h2 class="jobs-h2">
+                                                                <b>{{j.description}}</b>
+                                                        </h2>
+
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="row job-overview list-job-finder">
+
+                                        <div class="col-100">
+
+                                                <div class="banner-section">
+                                                        <carousel *ngIf="j?.images.length>0" class="job_details">
+                                                                <slide *ngFor="let image of j?.images">
+                                                                        <div class="img-list job-image">
+                                                                                <a [routerLink]="['/','jobs',j.id]">
+                                                                                        <h2>
+                                                                                                <b>{{j.title}}</b>
+                                                                                        </h2>
+                                                                                </a>
+                                                                        </div>
+                                                                        <img [src]="imageUrl(image.url)" alt="First slide" style=" display: block; width: 100%;">
+                                                                </slide>
+                                                        </carousel>
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-40 list-details">
+
+                                                <div>
+                                                        <button *ngIf="userType==2" (click)="message(j)" class="btn btn-primary btn-xs">
+                                                                Ask a question
+                                                        </button>
+                                                        
+
+                                                </div>
+                                        </div>
+                                        <div style="font-size: 10px;" class="col-60 list-details">
+                                                <div>Start Time:
+                                                        <span>{{jobFormate(j.start_date,'hh:s a')}}</span>
+                                                </div>
+                                                <div>Start Date:
+                                                        <span>{{jobFormate(j.start_date,'DD of MMM YYYY')}}</span>
+                                                </div>
+                                                <!-- Pending=1,Approved=2,Published=3,InProgress=4,Completed=5 -->
+
+                                        </div>
+                                </div>
+                        </li>
+                        <li *ngIf="jobs.length==0">
+                                <div class="row">
+                                        <div class="col-100 list-details">
+                                                <div> No jobs found. </div>
+                                        </div>
+                                </div>
+                        </li>
+                </ul>
+        </div>
+        <div *ngIf="steps==2" class="col-100">
+                <ul class="list-job-finder-inner list-jobs">
+                        <li *ngFor="let j of completedJobs">
+
+
+                                <div class="row">
+                                        <div class="col-30 img-avatar">
+                                                <a [routerLink]="['/','jobs',j.id]">
+                                                        <img style="border-radius: 50%;" [src]="avatar(j.avator)"> </a>
+                                        </div>
+                                        <div style="padding-top:5px;" class="col-50 list-details">
+                                                <div>
+                                                        <h2 style="font-size:12px; color:black">
+                                                                <b>{{j.user_id}}</b>
+                                                        </h2>
+                                                </div>
+                                                <div>
+                                                        <div *ngIf="j.rating>0" class="name-detailsss-name">
+                                                                <rating onlyview="true" [rating]="j.rating"></rating>
+
+                                                        </div>
+                                                      
+
+                                                </div>
+                                                <div >
+
+                                                        <h2 *ngIf="j.rating<=0" class="jobs-h2">
+                                                                <b >No feedback given </b>
+                                                        </h2>
+
+                                                </div>
+                                                <div >
+
+                                                        <h2 class="jobs-h2">
+                                                                <b *ngIf="j.ago<=0">Today - </b>
+                                                                <b *ngIf="j.ago=='1'">{{j.ago}} day ago - </b>
+                                                                <b *ngIf="j.ago>1">{{j.ago}} days ago - </b>
+
+                                                                <span *ngIf="j.job_status=='Completed'" class="alert-applicants">Completed</span>
+                                                        </h2>
+                                                </div>
+                                        </div>
+                                        <div class="col-20">
+
+                                                <button style="margin:1px 0px 0px -15px" (click)="changeRoute(j.id)" class="btn btn-primary btn-xs">
+                                                        View Details
+                                                </button>
+                                                <a *ngIf="userType == 2 && j.reviewed<1" [routerLink]="['/', 'jobs', j.id, j.created_by, 'jobreview']">
+                                                <button style="margin:1px 0px 0px -48px" class="btn btn-primary btn-xs">
+                                                        Please review now
+                                                </button>
+                                        </a>
+                                        </div>
+                                        <div class="col-100">
+                                                <div>
+                                                        <h2 class="jobs-h2">
+                                                                <b>{{j.description}}</b>
+                                                        </h2>
+
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="row job-overview list-job-finder">
+
+                                        <div class="col-100">
+
+                                                <div class="banner-section">
+                                                        <carousel *ngIf="j?.images.length>0" class="job_details">
+                                                                <slide *ngFor="let image of j?.images">
+                                                                        <div class="img-list job-image">
+                                                                                <a [routerLink]="['/','jobs',j.id]">
+                                                                                        <h2>
+                                                                                                <b>{{j.title}}</b>
+                                                                                        </h2>
+                                                                                </a>
+                                                                        </div>
+                                                                        <img [src]="imageUrl(image.url)" alt="First slide" style=" display: block; width: 100%;">
+                                                                </slide>
+                                                        </carousel>
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-40 list-details">
+
+
+
+                                        </div>
+                                        <div style="font-size: 10px;" class="col-60 list-details">
+                                                <div>Start Time:
+                                                        <span>{{jobFormate(j.start_date,'hh:s a')}}</span>
+                                                </div>
+                                                <div>Start Date:
+                                                        <span>{{jobFormate(j.start_date,'DD of MMM YYYY')}}</span>
+                                                </div>
+                                                <!-- Pending=1,Approved=2,Published=3,InProgress=4,Completed=5 -->
+                                        </div>
+                                </div>
+                        </li>
+                        <li *ngIf="completedJobs.length==0">
+                                <div class="row">
+                                        <div class="col-100 list-details">
+                                                <div> No jobs found. </div>
+                                        </div>
+                                </div>
+                        </li>
+                </ul>
+        </div>
+</div>
+
+
+<modal *ngIf="userType == 3" [show]="selectPayment" (hide)="onHide2()">
+        <div header>Payment accounts</div>
+        <div body class="width-100">
+                        <errors [errors]="errors"></errors>
+                <ul class="ul-list list-style-none">
+                        <li *ngFor="let u of userAccounts">
+                                <div class="radio radio-primary">
+                                        <input type="radio" name="accounts" [id]="'accounts' + u.id" [value]="u.id" (change)="selectAcount(u.id)" [checked]="(u.id==account_id)?true:false">
+                                        <label [for]="'accounts' + u.id">
+                                                {{u.title_name}} ({{u.card_type}})
+                                        </label>
+                                </div>
+                        </li>
+                </ul>
+        </div>
+        <div footer>
+                <button *ngIf="account_id > 0" (click)="payNow()" type="button" class="btn btn-default btn-sm">
+                         <i [class]="(paymentBusy)?'fa fa-spinner fa-spin':'fa fa-credit-card'"></i> Pay now
+                </button>
+        </div>
+</modal>

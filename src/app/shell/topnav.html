@@ -1,0 +1,29 @@
+<div *ngIf="auth.headerWithLogo" class="navbar">
+        <div class="navbar-inner">
+                <div class="center margin-bottom-30 margin-top-50" style="margin-left:65px;">
+                        <img src="img/photos/logo_gettoit.png">
+                </div>
+                <div class="pull-right">
+                        <a [routerLink]="['/','notification']" *ngIf="userType!=1" class="link icon-only open-panel">
+                                <i  class="icon icon-bell">
+                                      <!--   <div *ngIf="notifications>0" class="notify">{{notifications}}</div>
+                                --> </i>
+                        </a>
+                        <a [routerLink]="['/','admin','profile']" *ngIf="userType==1" class="link icon-only open-panel">
+                                <i  class="fa fa-user"></i>
+                        </a>
+                </div>
+        </div>
+</div>
+<div *ngIf="!auth.headerWithLogo" class="navbar">
+        <div class="navbar-inner">
+                <div class="left topnavlinks">
+                        <a [routerLink]="back_link()" (click)="step(2)" class="back link"> Back</a>
+                </div>
+                <div class="center">{{title}}</div>
+                <div class="right topnavlinks">
+                        <!-- Right link contains only icon - additional "icon-only" class-->
+                        <a *ngIf="showNext" href="javascript:void(0)" (click)="step(1)" class="link icon-only open-panel">{{naveNext}}</a>
+                </div>
+        </div>
+</div>

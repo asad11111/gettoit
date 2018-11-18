@@ -1,0 +1,37 @@
+<div class="page-content">
+
+    <div class="message-inbox">
+        <div class="message_content">
+            <ul>
+                <li *ngFor="let m of messages">
+                    <div [class]="(currentUser.id==m.send_by)?'msj-rta macro':'msj macro'">
+                        <div *ngIf="currentUser.id!=m.send_by" class="avatar">
+                            <img class="img-circle" [src]="avatar(m.reciever_avatar)">
+                        </div>
+                        <div [class]="(currentUser.id==m.send_by)?'text text-r':'text text-l'">
+                            <p>{{m.mesg}}</p>
+                            <p>
+                                <small>{{dateFormate(m.send_at)}}</small>
+                            </p>
+                        </div>
+                        <div *ngIf="currentUser.id==m.send_by" class="avatar" style="padding:0px 0px 0px 10px !important">
+                            <img class="img-circle" [src]="avatar(m.sender_avatar)">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="message_input">
+            <div class="inputmesg">
+                <input type="text" (keyup.enter)="sendMessage()" [(ngModel)]="mesg.mesg" class="form-control ex-padding-right">
+            </div>
+            <div class="sendbtn">
+                <button style="padding:12px 15px;" (click)="sendMessage()"  class="btn btn-primary">
+                    <i [class]="(busy)?'fa fa-spinner fa-spin fa-fw':'fa fa-paper-plane'"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,180 @@
+<div class="col-100">
+        <div class="form-grid list-block ">
+                <div class="margin-bottom-10">
+                        <button type="button" 
+                        *ngIf="(user_type==2 && data.bank_info.length==0) || user_type==3"
+                        style="margin:-10px 15px 0px;" 
+                        (click)="showModal(true)" 
+                        class="btn align-right btn-xs btn-primary">
+                                <i class="fa fa-plus"></i> Add </button>
+                </div>
+                <h5 class="blue align-left place-hd">{{(user_type==3)?"Credit Card Details":"Bank details"}}</h5>
+                <div *ngFor="let info of data?.bank_info" class="bg-white card-listing">
+
+                        <button *ngIf="user_type==2 && (info.verified=='Pending' || info.verified==null)" 
+                        title="Pleasse verify your account" 
+                        (click)="verify(info)" 
+                        class="btn btn-xs btn-success push-right margin-right-5"> <i class="fa fa-check"></i> </button>
+
+                        <button (click)="edit(info)" class="btn btn-xs btn-primary push-right margin-right-5">
+                                <i class="fa fa-edit"></i>
+                        </button>
+                        <button (click)="del(info)" class="btn btn-xs btn-danger push-right margin-right-5">
+                                <i class="fa fa-trash"></i>
+                        </button>
+                        <p *ngIf="user_type==3" class="align-left">Card title : {{info.title_name}}
+                                <br> Card type : {{info.card_type}}
+                                <br> Expiry date : {{info.expiry_date}}
+                        </p>
+                        <p *ngIf="user_type==2" class="align-left">Account title : {{info.title_name}}
+                                <br> Bank Name : {{info.card_type}}
+                                <br> Bank number : {{info.account_number}}
+                        </p>
+                </div>
+        </div>
+</div>
+
+
+<modal [show]="show" (hide)="onHide()">
+        <div header>Add account</div>
+        <div body class="width-100">
+                <form *ngIf="user_type==3">
+                        <div class="list-block margin-bottom-40">
+                                <ul class="no-border">
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Credit card title</div>
+                                                <input type="text" [(ngModel)]="account_info.title_name" name="title_name" placeholder="Credit card Title">
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Credit card type</div>
+
+                                                <div class="selectdata">
+                                                        <select [(ngModel)]="account_info.card_type" name="card_type">
+                                                                <option value="Visa"> Visa </option>
+                                                                <option value="MasterCard"> MasterCard </option>
+                                                                <option value="Discover"> Discover </option>
+                                                                <option value="American Express"> American Express </option>
+                                                        </select>
+                                                </div>
+
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Credit card Number</div>
+                                                <input type="text" [(ngModel)]="account_info.account_number" name="account_number" placeholder="Credit card Number">
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Card Verification Code (CVC)</div>
+                                                <input type="text" [(ngModel)]="account_info.cvc" name="cvc" placeholder="Card Verification Code">
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Expiry date</div>
+                                                <input type="text" max="7" maxlength="7" [(ngModel)]="account_info.expiry_date" name="expiry_date" placeholder="MM/YYYY">
+                                        </li>
+                                </ul>
+                        </div>
+                </form>
+
+                <form *ngIf="user_type==2">
+                        <div class="list-block margin-bottom-40">
+                                <ul class="no-border">
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Account Title</div>
+                                                <input type="text" [(ngModel)]="account_info.title_name" name="title_name" placeholder="Account Title">
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Bank Name</div>
+                                                <input type="text" [(ngModel)]="account_info.card_type" name="title_name" placeholder="Bank Name">
+
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Bank account Number</div>
+                                                <input type="text" [(ngModel)]="account_info.account_number" name="account_number" placeholder="Bank account Number">
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Bank routing Number</div>
+                                                <input type="text" max="6" maxlength="6" [(ngModel)]="account_info.routing" name="routing" placeholder="Bank routing Number (xxxxxx)">
+                                        </li>
+                                </ul>
+                        </div>
+                </form>
+        </div>
+        <div footer>
+                <button (click)="postBankInfo()" type="button" class="btn btn-default btn-sm">
+                        <i class="fa fa-save"></i> Save </button>
+        </div>
+</modal>
+
+
+<modal [show]="verifiModal" (hide)="onHide2()" *ngIf="user_type==2">
+        <div header>Add account</div>
+        <div body class="width-100 verification_form">
+                <form>
+                        <div class="list-block margin-top-0 margin-bottom-40">
+                                <errors [errors]="errorsVerify" ></errors>
+                                <ul class="no-border">
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">First name</div>
+                                                <input type="text" [(ngModel)]="verifyAccount.first_name" name="first_name" placeholder="First name">
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Last name</div>
+                                                <input type="text" [(ngModel)]="verifyAccount.last_name" name="last_name" placeholder="Last name">
+                                        </li>
+
+
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Account Title</div>
+                                                <input type="text" [(ngModel)]="verifyAccount.title_name" name="title_name" placeholder="Account Title">
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Bank Name</div>
+                                                <input type="text" [(ngModel)]="verifyAccount.card_type" name="title_name" placeholder="Bank Name">
+
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Bank account Number</div>
+                                                <input type="text" [(ngModel)]="verifyAccount.account_number" name="account_number" placeholder="Bank account Number">
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Bank routing Number</div>
+                                                <input type="text" max="6" maxlength="6" [(ngModel)]="verifyAccount.routing" name="routing" placeholder="Bank routing Number (xxxxxx)">
+                                        </li>
+
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Date of birth</div>
+                                                <owl-date-time name='dob' [type]="'calendar'" [max]="maxDob" [(ngModel)]="verifyAccount.dob" dateFormat="YYYY-MM-DD" autoClose="true"
+                                                        placeHolder="YYYY-MM-DD"></owl-date-time>
+                                        </li>
+
+ 
+
+
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Street address</div>
+                                                <input type="text" [(ngModel)]="verifyAccount.line1" name="line1" placeholder="Line and street address">
+                                        </li>
+
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">Postal code</div>
+                                                <input type="text" [(ngModel)]="verifyAccount.postal_code" name="postal_code" placeholder="Postal code">
+                                        </li>
+
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">City</div>
+                                                <input type="text" [(ngModel)]="verifyAccount.city" name="city" placeholder="City">
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <div class="place-hd align-left">State</div>
+                                                <input type="text" [(ngModel)]="verifyAccount.state" name="state" placeholder="State">
+                                        </li> 
+
+                                </ul>
+                        </div>
+                </form>
+        </div>
+        <div footer>
+                <button (click)="verifyBank()" type="button" class="btn btn-primary btn-sm">
+                        <i [class]="(busy)?'fa fa-spinner fa-spin':'fa fa-check'"></i> Verify Now </button>
+        </div>
+</modal>
+<confirm #confirm></confirm>

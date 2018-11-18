@@ -1,0 +1,51 @@
+<div class="row job-overview list-job-finder">
+        <div class="col-100">
+                <div class="form-grid bg-white padding-20">
+                        <div class="list-block margin-bottom-40">
+                                <ul class="no-border ul-list">
+                                        <h5 style="margin:-21px 0px 0px 30px" class="place-hd">How would you rate your employee</h5>
+                                        <div class="name-details">
+                                                <div class="name-detailss-session">
+                                                        <div class="name-detailss-name">
+                                                                <div>
+                                                                        <rating [rating]="rating" (onChange)="ratings($event)"></rating>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <br>
+
+                                        <li style="padding-bottom:64px" class="margin-bottom-10 line-1">
+                                                <h5 class="place-hd">Written Review: </h5>
+                                                <input type="text" name="rev" id="rev" [(ngModel)]="rev" style="padding-left:16px; float:left;">
+
+                                        </li>
+                                        <li class="margin-bottom-10 line-1">
+                                                <h5 class="place-hd">Do you wish to lay a complaint. Yes/No </h5>
+                                                <div class="margin-top-18 push-right">
+                                                        <!-- Rounded switch -->
+                                                        <label class="switch">
+                                                                <input name="comp" [checked]="checkCheked('comp')" (change)="changeChecked('comp',$event.target)" type="checkbox">
+                                                                <span class="slider round"></span>
+                                                        </label>
+                                                </div>
+                                                <br>
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <p style="padding-left:16px; float:left;">By selecting yes you will formally be laying a complaint that will then take
+                                                        you onto another page to fill in with more details regarding the review.
+                                                </p>
+                                        </li>
+                                        <li class="margin-bottom-10">
+                                                <p style="padding-left:16px; float:left;">If criminal by nature please report to local police authorities as soon as possible.
+                                                </p>
+                                        </li>
+                                        <br>
+                                </ul>
+                                <button class="btn btn-success" (click)="postReview()">
+                                        <i class="fa fa-save"></i> Save review </button>
+                        </div>
+                </div>
+        </div>
+
+</div>

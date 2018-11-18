@@ -1,0 +1,223 @@
+<div class="pages">
+	<!-- Page, "Your Role" contains page name -->
+	<div data-page="index" class="page">
+		<!-- Scrollable page content -->
+		<div class="page-content" id="{{(steps==1)?'your-role':'inner-content'}}">
+			<ul class="top-links">
+				<li class="{{(steps==1)?'active':''}}"></li>
+				<li class="{{(steps==2)?'active':''}}"></li>
+				<li class="{{(steps==3)?'active':''}}"></li>
+				<li class="{{(steps==4)?'active':''}}"></li>
+				<li *ngIf="data.user_role==2" class="{{(steps==5)?'active':''}}"></li>
+			</ul>
+			<div class="clearfix"></div>
+			<div class="your-role-content">
+				<div class="navbar">
+					<div class="navbar-inner">
+						<div class="left">
+							<a href="javascript:void(0)" (click)="step(2)" class="back link"> Back</a>
+						</div>
+						<div *ngIf="steps==1" class="center">Your Role</div>
+						<div *ngIf="steps==2" class="center">User Details</div>
+						<div *ngIf="steps==3" class="center">In a Emergency</div>
+						<div *ngIf="steps==4" class="center">Work and Pay</div>
+						<div *ngIf="steps==5" class="center">What can you do ?</div>
+						<div class="right">
+							<!-- Right link contains only icon - additional "icon-only" class-->
+							<a *ngIf="steps<5" href="javascript:void(0)" (click)="(data.user_role==3 && steps==4)?register():step(1)" class="link icon-only open-panel">{{(data.user_role==3 && steps==4)?'Finish':'Next'}} </a>
+							<a *ngIf="steps==5" href="javascript:void(0)" (click)="register()" class="link icon-only open-panel">Finish</a>
+						</div>
+					</div>
+				</div>
+
+				<div *ngIf="steps==1" class="your-role-content-session">
+					<div>Are you worker or an Employer</div>
+					<div class="row user_role">
+						<div class="col-50">
+							<div (click)="roleType(2)" class="box-area {{(data.user_role==2)?'active':''}}">
+								<a href="javascript:void(0)">
+									<img src="img/photos/Icons/Spade-50.png">
+									<div>Worker</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-50">
+							<div (click)="roleType(3)" class="box-area {{(data.user_role==3)?'active':''}}">
+								<a href="javascript:void(0)">
+									<img src="img/photos/Icons/Permanent Job-50.png">
+									<div>Employer</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-100 note-txt">
+							Disclosure: There is an age restriction applied to being a worker. to be aligeble you ust between 16-24 years of age.
+						</div>
+					</div>
+				</div>
+				<!-- Page, "User Details" contains page name -->
+
+				<div *ngIf="steps==2" class="form-grid">
+					<form>
+						<div class="list-block margin-bottom-40">
+							<ul class="no-border">
+								<li class="margin-bottom-10">
+									<div class="place-hd">Age: </div>
+									<input type="text" [(ngModel)]="data.age" name="age">
+								</li>
+								<li class="margin-bottom-10">
+									<div class="place-hd">Occupation: </div>
+									<input type="text" [(ngModel)]="data.occupation" name="occupation" placeholder="Occupation">
+								</li>
+								<li class="margin-bottom-10">
+									<div class="place-hd">Biography: </div>
+									<input type="text" [(ngModel)]="data.biography" name="biography" placeholder="Biography">
+								</li>
+								<li class="margin-bottom-10">
+									<div class="place-hd">Referees: </div>
+									<input type="text" [(ngModel)]="data.refrees" name="refrees" placeholder="Referees">
+								</li>
+							</ul>
+						</div>
+					</form>
+				</div>
+
+				<!-- Page, "In a Emergency" contains page name -->
+
+				<div *ngIf="steps==3" class="form-grid">
+					<form>
+						<div class="list-block margin-bottom-40">
+							<ul class="no-border">
+								<li class="margin-bottom-10">
+									<div class="place-hd">Emergency Contacts Name: </div>
+									<input type="text" [(ngModel)]="data.emergency_contact_name" name="emergency_contact_name" placeholder="Emergency Contacts Name">
+								</li>
+								<li class="margin-bottom-10">
+									<div class="place-hd">Emergency Contact Number: </div>
+									<input type="text" [(ngModel)]="data.emergency_contact_number" name="emergency_contact_number" placeholder="Emergency Contact Number">
+								</li>
+								<li class="margin-bottom-10">
+									<div class="place-hd">What is your postal address: </div>
+									<input type="text" [(ngModel)]="data.emergency_poster_address" name="emergency_poster_address" placeholder="Address Line">
+								</li>
+							</ul>
+						</div>
+					</form>
+					<div class="note-content">
+						<p>Disclosure: Get to it's number prioirty is the saftey of all our users. We require you to set an emergency contact
+							for just that Emergencies. Finger crossed its never used but better safe than sorry. </p>
+						<p>Please make your Emergency contact is aware that they are such. </p>
+						<p> In the event of you using the emergency button, they will recieve a txt; stating your location, time, what your doing
+							and that you need help. </p>
+					</div>
+				</div>
+
+				<!-- Page, "Work and Pay" contains page name -->
+				<div *ngIf="steps==4 && data.user_role==2" class="form-grid">
+					<form>
+						<div class="list-block margin-bottom-40">
+							<ul class="no-border">
+								<li class="margin-bottom-10 line-1">
+									<div class="place-hd">Please Indicate whether you are entitled under the immigration act 2009 to work in New Zealand
+										<span style="color:#888888;"> (Tap the box that applies) </span>
+									</div>
+								</li>
+								<li class="margin-bottom-10 line-1">
+									<div class="place-hd" style="color:#222;">I am a New Zealand or Australian Citizen or I am entitled to work Indefintely
+									</div>
+									<div class="place-hd" style="color:#999; font-size:16px;">
+										<div style="height:40px;">
+											<div style="float:left;">No/Yes</div>
+											<div style="float:right;">
+												<!-- Rounded switch -->
+												<label class="switch">
+													<input [checked]="checkCheked('newzealand_citizen')" (change)="changeChecked('newzealand_citizen',$event.target)" name="newzealand_citizen"
+													 type="checkbox">
+													<span class="slider round"></span>
+												</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="place-hd" style="color:#222;">I hold a valid Visa with conditions allowing me to work in New Zealand </div>
+									<div class="place-hd" style="color:#999; font-size:16px;">
+										<div style="height:40px;">
+											<div style="float:left;">No/Yes</div>
+											<div style="float:right;">
+												<!-- Rounded switch -->
+												<label class="switch">
+													<input [checked]="checkCheked('newzealand_viza')" (change)="changeChecked('newzealand_viza',$event.target)" name="newzealand_viza"
+													 type="checkbox">
+													<span class="slider round"></span>
+												</label>
+											</div>
+										</div>
+									</div>
+								</li>
+
+								<li class="margin-bottom-10">
+									<div class="place-hd">Bank Account Title</div>
+									<input type="text" [(ngModel)]="data.title_name" name="title_name" placeholder="Bank Account Title">
+								</li>
+
+								<li class="margin-bottom-10">
+									<div class="place-hd">Bank Account Number</div>
+									<input type="text" [(ngModel)]="data.account_number" name="account_number" placeholder="Bank Account Number">
+								</li>
+							</ul>
+						</div>
+					</form>
+					<div class="note-content">
+						<p>Disclosure: As per the terms and conditions you are responsible for the payment of your income tax.</p>
+					</div>
+				</div>
+
+
+				<!-- Page, "Work and Pay" contains page name -->
+				<div *ngIf="steps==4 && data.user_role==3" class="form-grid">
+					<form>
+						<div class="list-block margin-bottom-40">
+							<ul class="no-border">
+								<li class="margin-bottom-10">
+									<div class="place-hd">Credit card tite</div>
+									<input type="text" [(ngModel)]="data.title_name" name="title_name" placeholder="Credit card Title">
+								</li>
+								<li class="margin-bottom-10">
+									<div class="place-hd">Credit card type</div>
+
+									<div class="selectdata">
+										<select [(ngModel)]="data.card_type" name="card_type">
+											<option value="Visa"> Visa </option>
+											<option value="MasterCard"> MasterCard </option>
+											<option value="Discover"> Discover </option>
+											<option value="American Express"> American Express </option>
+										</select>
+									</div>
+
+								</li>
+								<li class="margin-bottom-10">
+									<div class="place-hd">Credit card Number</div>
+									<input type="text" [(ngModel)]="data.account_number" name="account_number" placeholder="Credit card Number">
+								</li>
+								<li class="margin-bottom-10">
+									<div class="place-hd">Expiry date</div>
+									<input type="text" [(ngModel)]="data.expiry_date" name="expiry_date" placeholder="MM/YYYY">
+								</li>
+							</ul>
+						</div>
+					</form>
+				</div>
+
+				<div *ngIf="steps==5" class="box-area-three row">
+					<div class="col-33" *ngFor="let c of categories">
+						<div class="box-area  {{(checkCat(c.id))?'active':''}}" (click)="setCat(c)">
+							<a href="javascript:void(0)">
+								<img src="img/photos/Icons/{{c.logo}}">
+								<div>{{c.title}}</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,46 @@
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+   
+    <!-- Views -->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Pages container, because we use fixed navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages">
+                <!-- Page, "data-page" contains page name -->
+                <div data-page="index" class="page">
+                    <!-- Scrollable page content -->
+                    <div class="page-content" id="app-cover">
+						<div class="clearfix"></div>
+                        <div class="app-cover-content">
+                            <div class="margin-bottom-30" style="margin:-85px -15px 0; background:#47ace4; padding-top:10px;"><img src="img/photos/logo_gettoit.png" alt="Carlitos"/></div>
+							<div class="text-medium margin-bottom-15 banner-main" style="font-size:13px;">
+								Getting work done, so you don't have too
+							</div>
+                            
+                            <div class="signup-sec">
+							<div class="row">
+								<div class="col-100 margin-bottom-10">
+									<a  (click)="sociallogin('f')" class="button button-fill text-thiny color-facebook"><img src="img/photos/facebook.png">Facebook sign up</a>
+								</div>
+								<div class="col-100">
+									<a  (click)="sociallogin('g')" class="button button-fill color-deeporange text-thiny"><img src="img/photos/googleplus.png"> Google sign up</a>
+								</div>
+							</div>
+							<div class="row offset-top-30 margin-bottom-10">
+								<div class="col-100">
+									<a [routerLink]="['/']" class="white-text text-thiny" style="color:#fff; font-size:16px !important; text-decoration:underline;">
+										Back
+									</a>
+								</div>
+							</div>
+							</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

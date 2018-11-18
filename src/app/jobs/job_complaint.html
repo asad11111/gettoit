@@ -1,0 +1,35 @@
+<div class="row job-overview list-job-finder">
+
+        <div class="col-100">
+                <div class="form-grid bg-white padding-20">
+                        <div class="list-block margin-bottom-40">
+                                <ul class="no-border ul-list">
+
+                                        <li  class="margin-bottom-10 line-2">
+                                                <h5 class="place-hd">On a Scale of 1-5 how serious was the incident </h5>
+                                                <input  type="text" name="rev" id="rev" [(ngModel)]="scale" >
+                                              <!--   <p style="padding-left:16px; float:left;"> 1</p> -->
+                                        </li>
+                                        <li  class="margin-bottom-10 line-2">
+                                                <h5 class="place-hd">Please Describe the nature of complaint </h5>
+                                                <input  type="text" name="scale" id="scale" [(ngModel)]="nature" >
+                                        </li>
+                                        <li  class="margin-bottom-10 line-2">
+                                                <h5 class="place-hd">Please describe the incident in detail</h5>
+                                                <input  type="text" name="nature" id="nature" [(ngModel)]="incid" >
+                                        </li>
+                                        <li  class="margin-bottom-10 line-2">
+                                                <h5 class="place-hd">How do you recommend we deal with the situation, that is fair on all parties </h5>
+                                                <input  type="text" name="incid" id="incid" [(ngModel)]="situ" >
+                                        </li>
+                                        <li  class="margin-bottom-10 line-2">
+                                                <h5 class="place-hd">Any other comments </h5>
+                                                <input  type="text" name="situ" id="situ" [(ngModel)]="coments" >
+                                        </li>
+                                </ul>
+                                <button (click)="postComplaint()" class="btn btn-success btn-xs" > 
+                                        <i [class]="(busy)?'fa fa-spin fa-spinner':'fa fa-paper-plane-o'"></i> Submit </button>
+                        </div>
+                </div>
+        </div>
+</div>

@@ -1,0 +1,905 @@
+img {
+    max-width: 100%;
+}
+
+/* Typography
+================================================== */
+body {
+	font-family: "Montserrat"!important;
+}
+
+/* Titles */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 200;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 200;
+    line-height: 1.25;
+}
+
+h3 {
+    font-size: 30px;
+    line-height: 1.3;
+}
+
+h4 {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+h5 {
+    font-size: 15.5px;
+    line-height: 1.5;
+}
+
+h6 {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.title-huge {
+    font-size: 80px;
+    font-weight: 100;
+    line-height: 1.1;
+}
+
+.title-large {
+    font-size: 60px;
+    font-weight: 100;
+    line-height: 1.2;
+}
+.banner-section {
+        width:100%}
+        
+.name-details {
+        width:100%;
+        background:#fcfcfc ;
+        margin:-6px 0 0 0;
+        height:70px;
+        border-bottom:solid 3px #f0f0f0 ;}
+		
+.worker-more {
+        background:#f3f3f3 !important;
+        }
+        
+.profile-view {
+        padding:15px 10px 10px 10px;
+        border-top:solid 2px #4d4e58 ;
+        border-bottom:solid 2px #d9d9d9 ;}
+        
+.profile-image img {
+        width:80px;
+        height:80px;}
+        
+.profile-heading {
+        text-align:center;
+        font-size:14px;
+        color:#666;
+        text-decoration:underline;}
+
+.decoration-heading{
+
+    color:black; 
+    font-size: 12px;
+    text-decoration:underline;
+}
+
+.i-style {
+    float:right;margin:-42px -121px 0px 0px;
+    
+}
+        
+.profile-listing {
+        text-align:left;
+        color:#47a8df ;
+        margin:0;
+        padding:0;}
+        
+.profile-listing li{
+        list-style:none;
+        text-align:left;
+        font-size:13px;
+        line-height:38px;
+        background:url(../img/photos/Icons/arrow_right_black_24_1x.png) no-repeat right;
+        border-bottom:solid 2px #d9d9d9 ;}
+        
+.profile-listing li:hover{
+        background:#fff url(../img/photos/Icons/arrow_right_black_24_1x.png) no-repeat right;}
+        
+.profile-listing li a{
+        color:#47a8df ;
+        padding:6px 40px 6px 60px}
+        
+.profile-listing li a.complaints {
+    background:url(../img/photos/Icons/strike-28.png) no-repeat left;}    
+    
+.profile-listing li a.banking {    
+    background:url(../img/photos/Icons/credit_card_black_1x.png) no-repeat left;}
+    
+.profile-listing li a.about {
+    background:url(../img/photos/Icons/about-28.png) no-repeat left;}
+
+.profile-logout {
+        margin-top:60px;
+        }
+        
+.profile-logout a{
+        font-size:12px;
+        text-decoration:underline;
+        color:#454545 ;}
+        
+.name-details-session {
+        width:200px;
+        margin:0 auto;}
+
+ .name-detailss-session {
+            width:200px;
+            margin:0 auto;
+        margin: 0px 0px 0px 0px;
+    }
+
+.job-finder-overview {
+        background:#fcfcfc !important;}
+        
+.name-details-icon {
+        float:left;
+        height:60px;
+        width:60px;
+        }
+.name-details-icon img{
+        height:60px;
+        width:60px;
+        margin-top:5px;}
+        
+.name-details-name {
+        color:#454545 ;
+        width:130px;
+        float:left;
+        padding-left:10px;
+        padding-top:18px;
+        font-size:11px;
+        text-align:left !important;
+        text-decoration:underline;}
+
+        .name-detailss-name {
+            color:#454545 ;
+            width:130px;
+            float:left;
+            color:#454545;
+            font-size:11px;
+            margin: -30px 0px 0px 130px;
+            text-align:left !important;
+        }
+        .name-detailsss-name {
+            color: #454545;
+            width: 130px;
+            float: left;
+            color: #454545;
+            font-size: 8px;
+            margin: -32px 59px -3px 29px;
+            text-align: left !important;
+        }
+
+.name-details-name-description {
+    width:130px;
+    float:left;
+    padding-left:10px;
+    padding-top:0px;
+    font-size:12px;
+    text-align:left !important;
+    color:#454545 ;}
+        
+.name-details-name img{
+        height:20px;
+        margin:0 0 0 -3px;}
+
+
+        .name-detailss-name img{
+            height:39px;
+            margin:27px 0px -5px -16px;}
+        
+
+            .rating {
+                float:left;
+                margin: 27px -33px 0px -39px;
+                border: none;
+            }
+            /***************************
+            Hides the radio buttons
+            ***************************/
+            .rating:not(:checked) > input {
+                position:absolute;
+                top:-9999px;
+                clip:rect(0,0,0,0);
+            }
+            /***************************
+            Default stars styles
+            ***************************/
+            .rating:not(:checked) > label {
+                float:right;
+                width:1em;
+                padding:0 .1em;
+                overflow:hidden;
+                white-space:nowrap;
+                cursor:pointer;
+                font-size:200%;
+                line-height:1.2;
+                color:#ddd;
+            }
+            /***************************
+            Adds the star symbol to the labels
+            ***************************/
+            .rating:not(:checked) > label:before {
+                content: '★ ';
+            }
+            /***************************
+            Colour for the applied rating stars
+            ***************************/
+            .rating > input:checked ~ label {
+                color: #f70;
+            }
+            /***************************
+            Colour for hovered stars when increasing the rating
+            ***************************/
+            .rating:not(:checked) > label:hover,
+            .rating:not(:checked) > label:hover ~ label {
+                color: gold;
+            }
+            /***************************
+            Colour for hovered stars when decreasing the rating
+            ***************************/
+            .rating > input:checked ~ label:hover,
+            .rating > input:checked ~ label:hover ~ label,
+            .rating > label:hover ~ input:checked ~ label {
+                color: #ea0;
+            }
+        
+        
+.job-details {
+         padding:10px;
+         color:#999999 ;
+         font-size:11px;
+         text-align:left;
+         border-bottom:solid 2px #f0f0f0 ;}
+         
+.job-details h3 {
+        font-size:12px;
+        font-weight:normal;
+        color:#47ace4 ;}
+        
+.job-details p {
+        line-height:12px;
+        margin:5px 0 0 0;
+        font-weight:normal !important;}
+        
+.job-specs {
+        height:30px;
+        padding:12px;
+        color:#454545 ;
+        font-size:11px;}
+        
+.job-specs .sub-job-specs {
+        color:#999;
+        font-size:9px;}
+        
+.button-session {
+        min-width:300px;
+        margin:10px auto;
+        text-align:center;
+        }
+        
+.greenBtn {
+        background:#58d551 ;
+        font-size:14px;
+        padding:5px 50px;
+        text-align:center;
+        border:0;
+        color:#fff !important;
+        border-radius:6px;}
+        
+.redBtn {
+            background:red;
+            font-size:14px;
+            padding:5px 50px;
+            text-align:center;
+            border:0;
+            color:#fff !important;
+            border-radius:6px;}
+.a-right{
+    text-align: left;
+    padding-left: 20px;
+    margin: 0px 0px 0px 0px;
+   
+}
+
+
+
+.title-medium {
+    font-size: 50px;
+    font-weight: 200;
+    line-height: 1.2;
+}
+
+.title-small {
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Buttons
+================================================== */
+.color-white-opacity {
+	background: rgba(255,255,255,0.6)!important;
+}
+
+.color-facebook{
+	background: #3b5998!important;
+}
+
+
+
+/* Code
+================================================== */
+
+code {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    font-size: 90%;
+    margin: 0 .2rem;
+    padding: .2rem .5rem;
+    white-space: nowrap;
+}
+
+pre > code {
+    display: block;
+    padding: 1rem 1.5rem;
+    white-space: pre;
+}
+
+/* Tables
+================================================== */
+
+th,
+td {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th:first-child,
+td:first-child {
+    padding-left: 0;
+}
+
+th:last-child,
+td:last-child {
+    padding-right: 0;
+}
+
+
+/* Spacing
+================================================== */
+
+
+/* Margins */
+
+.margin-bottom-10 {
+    margin-bottom: 10px !important;
+}
+
+.margin-bottom-15 {
+    margin-bottom: 15px !important;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px !important;
+}
+
+.margin-bottom-25 {
+    margin-bottom: 25px !important;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 30px !important;
+}
+
+.margin-bottom-35 {
+    margin-bottom: 35px !important;
+}
+
+.margin-bottom-40 {
+    margin-bottom: 40px !important;
+}
+
+.margin-bottom-45 {
+    margin-bottom: 45px !important;
+}
+
+.margin-bottom-50 {
+    margin-bottom: 50px !important;
+}
+
+.margin-bottom-60 {
+    margin-bottom: 60px !important;
+}
+
+.margin-bottom-65 {
+    margin-bottom: 65px !important;
+}
+
+.margin-bottom-70 {
+    margin-bottom: 70px !important;
+}
+
+.margin-bottom-75 {
+    margin-bottom: 75px !important;
+}
+
+.margin-bottom-80 {
+    margin-bottom: 80px !important;
+}
+
+.margin-bottom-100 {
+    margin-bottom: 100px !important;
+}
+
+.margin-top-10 {
+    margin-top: 10px !important;
+}
+
+.margin-top-15 {
+    margin-top: 15px !important;
+}
+
+.margin-top-20 {
+    margin-top: 20px !important;
+}
+
+.margin-top-25 {
+    margin-top: 25px !important;
+}
+
+.margin-top-30 {
+    margin-top: 30px !important;
+}
+
+.margin-top-35 {
+    margin-top: 35px !important;
+}
+
+.margin-top-40 {
+    margin-top: 40px !important;
+}
+
+.margin-top-45 {
+    margin-top: 45px !important;
+}
+
+.margin-top-50 {
+    margin-top: 50px !important;
+}
+
+.margin-top-60 {
+    margin-top: 60px !important;
+}
+
+.margin-top-65 {
+    margin-top: 65px !important;
+}
+
+.margin-top-70 {
+    margin-top: 70px !important;
+}
+
+.margin-top-75 {
+    margin-top: 75px !important;
+}
+
+.margin-top-80 {
+    margin-top: 80px !important;
+}
+
+.margin-top-100 {
+    margin-top: 100px !important;
+}
+
+.no-margin {
+	margin: 0px!important;
+}
+
+/* Offsets */
+
+.offset-bottom-5 {
+    padding-bottom: 5px !important;
+}
+
+.offset-bottom-10 {
+    padding-bottom: 10px !important;
+}
+
+.offset-bottom-15 {
+    padding-bottom: 15px !important;
+}
+
+.offset-bottom-20 {
+    padding-bottom: 20px !important;
+}
+
+.offset-bottom-25 {
+    padding-bottom: 25px !important;
+}
+
+.offset-bottom-30 {
+    padding-bottom: 30px !important;
+}
+
+.offset-bottom-35 {
+    padding-bottom: 35px !important;
+}
+
+.offset-top-5 {
+    padding-top: 5px !important;
+}
+
+.offset-top-10 {
+    padding-top: 10px !important;
+}
+
+.offset-top-15 {
+    padding-top: 15px !important;
+}
+
+.offset-top-20 {
+    padding-top: 20px !important;
+}
+
+.offset-top-25 {
+    padding-top: 25px !important;
+}
+
+.offset-top-30 {
+    padding-top: 30px !important;
+}
+
+.offset-top-35 {
+    padding-top: 35px !important;
+}
+
+.no-padding {
+	padding: 0px!important;
+}
+
+/* Blockquote
+================================================== */
+
+blockquote {
+    font-family: "Montserrat";
+    margin: 0px;
+}
+
+
+/* Utilities
+================================================== */
+
+.vertical-bottom {
+    vertical-align: bottom;
+}
+
+.vertical-top {
+    vertical-align: top;
+}
+
+.vertical-center {
+    vertical-align: middle;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.pull-left {
+	float: left;
+}
+
+.pull-right {
+	float: right;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.text-underline {
+	text-decoration: underline;
+}
+
+/* Selection */
+
+.u-unselectable {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+
+/* Display */
+
+.display-block {
+    display: block;
+}
+
+.display-table {
+    display: table;
+}
+
+.display-inline {
+    display: inline;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+
+/* Text formating */
+
+.text-normal {
+    font-style: normal!important;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-large {
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.text-medium {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.text-small {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.text-thiny {
+    font-size: 12px!important;
+}
+
+.text-extrat-thiny {
+    font-size: 10px!important;
+}
+
+.text-extrat-bold {
+    font-weight: 700 !important;
+}
+
+.text-bold {
+    font-weight: 600 !important;
+}
+
+.text-semi-bold {
+    font-weight: 500 !important;
+}
+
+.text-regular {
+    font-weight: 400 !important;
+}
+
+.text-light {
+    font-weight: 300 !important;
+}
+
+.text-extralight {
+    font-weight: 200 !important;
+}
+
+.text-thin {
+    font-weight: 100 !important;
+}
+
+/* Colors */
+
+.gray-text,
+.gray-text a {
+	color: gray!important;
+}
+
+.lightgray-text,
+.lightgray-text a { 
+	color: #EFEFEF!important;
+}
+
+.black-text,
+.black-text a {
+	color: #000000!important;
+}
+
+.white-text,
+.white-text a {
+	color: 000000!important;
+}
+
+.job-finder {
+		background:#e5e9ea !important;
+		}
+.tab-bar {border-bottom:solid 2px #999;
+		background:#fff;}
+.tab-bar .tab-top{
+		border-bottom:solid 2px #999;
+		margin-bottom:-2px}
+		
+.tab-bar .select{
+		border-bottom:solid 2px #47ace4;}
+		
+.tab-bar .tab-top a {
+		color:#666;
+		font-size:12px;
+		line-height:30px;}
+.tab-bar .tab-top a:hover{
+		color:#47ace4;}
+		
+.tab-bar .select a{
+		color:#47ace4;}
+		
+.list-job-finder {
+		padding:10px 10px 70px 10px;
+		font-size:12px;}
+		
+ul.list-job-finder-inner {
+		margin:0; 
+		padding:0;
+		text-align:left;}
+		
+ul.list-job-finder-inner li{
+		background:#fff;
+		list-style:none;
+		margin-bottom:10px;
+		border:solid 1px #aaa;}
+		
+ul.list-job-finder-inner li .img-list {
+		width: 100%;
+		height: auto;}
+		
+ul.list-job-finder-inner li .img-list h2{
+	margin:0;
+	position:absolute;
+	color:#fff;
+	 background:rgba(0,0,0,0.6);
+	font-size:14px;
+	padding:5px 10px;}
+
+ul.list-job-finder-inner li .row {
+		padding:5px 10px;}
+
+ul.list-job-finder-inner li .img-avatar img{
+		width:65px;
+		height:65px;
+        border-radius:35px;}
+.jobs-h2{
+    padding-top:3px; 
+    font-size:9px;
+     color:grey;
+}
+		
+ul.list-job-finder-inner li .list-details {
+		color:#46abdf;
+		line-height:22px;}	
+		
+ul.list-job-finder-inner li .list-details span{
+		margin-left:10px;
+		color:#222;}
+		
+	ul.list-job-finder-inner li .list-details .alert{
+			color:#ef1b2d;
+            margin-left:5px;}
+            ul.list-job-finder-inner li .list-details .alert-applicants{
+                color:#ef1b2d;
+                margin-left:5px;}
+		
+#MenuContainer {
+            height: 70px;
+            bottom:0;
+            position:fixed;
+            z-index: 100;
+        }
+.pad-f{
+    margin: 0px 80px 0px 70px;
+    clear: both;
+}
+.pad-f2{
+margin: 0px 32px 0px 0px;
+}
+
+.job-overview-tools{
+    margin:6px 0px 0px 0px;  padding-right:16px; float:right;
+}
+ul#navigation {
+			height: 70px;
+			list-style: none;
+			margin: 0;
+			padding: 0;   
+			text-align: center;
+			font-size: 12px;
+			background-color: #FFF;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+}
+
+.job-search-section {
+		background:rgba(0,0,0,0.7);
+		margin:25px 30px;
+		color:#fff;
+		padding:5px 30px;}
+		
+.job-search-section select{
+		background:#fff url(../img/photos/Icons/arrow_down_black_24dp_1x.png) no-repeat right;
+		border:0;
+		border-radius:12px;
+		color:#222;
+		text-align: center ;
+		margin-bottom:20px;
+		font-size:14px !important;
+}
+
+.job-search {
+    background-image: url(../img/photos/workingfromhome.jpg) !important;
+    background-position: center;
+    background-size: cover;
+    color: #FFFFFF;
+    padding: 32px 15px;
+    text-align: center ;
+}
+ul#navigation li {
+    display:inline-block;
+    margin-right: .75em;
+    list-style: none;
+    margin: 0;
+    padding: 12px 12px;
+}
+ul#navigation li p {
+		margin:0;
+		}
+ul#navigation li a{
+			color:#666;}		
+			
+ul#navigation li a:hover{
+		color:#47ace4;}
+				
+ul#navigation li.select a {
+		color:#47ace4;}
